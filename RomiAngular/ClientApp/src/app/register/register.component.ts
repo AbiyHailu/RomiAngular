@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
       .pipe(first())
       .subscribe(
         () => {
-          this.router.navigate(['foods/list/'])
+          this.router.navigate(['login'])
         },
         () => {
           this.loading = false;

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title> list</title>
+</head>
+<body>
+
+  <h1>Romi Hotel Food Menu</h1>
+
+  <p>
+    <a (click) = "navigateToAdd()">Create New</a>
+  </p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Unit Price
+        </th>
+        <th>
+          Decription
+        </th>
+        <th>
+          Manage
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody> 
+      <tr *ngFor="let food of foods">
+        <td>
+          {{food.name}}
+        </td>
+        <td>
+          {{food.unitPrice}}
+        </td>
+        <td>
+          {{food.description}}
+        </td>
+        <td>
+          <a (click) ="navigateToEdit(food.foodID)">Edit</a> |
+          <a>Details</a> |
+          <a>Delete</a>
+        </td>
+      </tr> 
+    </tbody>
+  </table>
+</body>
+</html>
