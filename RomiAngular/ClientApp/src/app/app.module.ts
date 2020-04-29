@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component'; 
-import { AdminComponent } from './Admin/admin.component';
+import { AdminComponent } from './admin/admin.component';
 import { AdminGuard } from './auth/adminGuard.service';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';

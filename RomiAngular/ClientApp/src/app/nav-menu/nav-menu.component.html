@@ -29,10 +29,10 @@
             <a class="nav-link text-dark" *ngIf="!userData.isLoggedIn" [routerLink]='["/login"]'>Login</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.role==userRole.User" [routerLink]='["/user-home"]' [routerLink]=''>UserHome</a>
+            <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.userRole==userRole.User" [routerLink]='["/user-home"]' [routerLink]=''>UserHome</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.role==userRole.Admin" [routerLink]='["/admin-home"]' [routerLink]=''>AdminHome</a>
+            <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.userRole==userRole.Admin" [routerLink]='["/admin-home"]' [routerLink]=''>AdminHome</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
             <a class="nav-link text-dark" *ngIf="userData.isLoggedIn" (click)=logout() [routerLink]=''>Logout</a>
