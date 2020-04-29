@@ -5,43 +5,47 @@ import { first } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html'
+  selector: 'app-register',
+  templateUrl: './register.component.html'
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   loading = false;
-  loginForm: FormGroup;
+  registerForm: FormGroup;
   submitted = false;
   returnUrl: string;
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService) { }
-  ngOnInit() {
-    this.loginForm = this.formBuilder.group({
+
+  ngOnInit() { 
+    this.registerForm = this.formBuilder.group({ 
       emailaddress: ['', [Validators.required, Validators.email]],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],  
       password: ['', Validators.required]
     });
   }
-  get loginFormControl() { return this.loginForm.controls; }
+
+  get registerControl() { return this.registerForm.controls; }
   onSubmit() {
     this.submitted = true;
-    if (this.loginForm.invalid) {
+    if (this.registerForm.invalid) {
       return;
     }
-    this.loading = true;
-    const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-    this.authService.login(this.loginForm.value)
+    this.loading = true; 
+
+    this.authService.register(this.registerForm.value)
       .pipe(first())
       .subscribe(
         () => {
-          this.router.navigate([returnUrl]);
+          this.router.navigate(['foods/list/'])
         },
         () => {
           this.loading = false;
-          this.loginForm.reset();
-          this.loginForm.setErrors({
-            invalidLogin: true
+          this.registerForm.reset();
+          this.registerForm.setErrors({
+            invalidregistration: true
           });
         });
   }

@@ -29,6 +29,9 @@
             <a class="nav-link text-dark" *ngIf="!userData.isLoggedIn" [routerLink]='["/login"]'>Login</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
+            <a class="nav-link text-dark" *ngIf="!userData.isLoggedIn" [routerLink]='["/register"]'>Register</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]='["link-active"]'>
             <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.userRole==userRole.User" [routerLink]='["/user-home"]' [routerLink]=''>UserHome</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>

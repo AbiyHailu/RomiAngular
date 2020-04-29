@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using RomiAngular.Data;
 using RomiAngular.Models;
 using System;
 using System.Text;
@@ -24,6 +26,7 @@ namespace RomiAngular
          
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<RomiContext>(options => options.UseSqlServer(Configuration.GetConnectionString("RomiConnection")));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {

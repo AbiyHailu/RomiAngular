@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using RomiAngular.Data;
 using RomiAngular.Models;
  
 namespace RomiAngular.Controllers
@@ -16,15 +17,15 @@ namespace RomiAngular.Controllers
     [Route("api/[controller]")]
     public class LoginController : Controller
     {
+        private readonly RomiContext _context;
+
         private readonly IConfiguration _config;
-        private List<User> appUsers = new List<User>
-        {
-            new User {  FirstName = "Admin",  UserName = "admin", Password = "AdminTestPass", UserType = "Admin" },
-            new User {  FirstName = "Abiy",  UserName = "abiy", Password = "UserTestPass", UserType = "User" }
-        };
-        public LoginController(IConfiguration config)
+        
+        public LoginController(IConfiguration config, RomiContext context)
         {
             _config = config;
+            _context = context;
+
         }
         [HttpPost]
         [AllowAnonymous]
@@ -44,8 +45,8 @@ namespace RomiAngular.Controllers
             return response;
         }
         User AuthenticateUser(User loginCredentials)
-        {
-            User user = appUsers.SingleOrDefault(x => x.UserName == loginCredentials.UserName && x.Password == loginCredentials.Password);
+        {  
+            User user = _context.Users.SingleOrDefault(x => x.Emailaddress == loginCredentials.Emailaddress && x.Password == loginCredentials.Password);
             return user;
         }
         string GenerateJWT(User userInfo)
@@ -54,7 +55,7 @@ namespace RomiAngular.Controllers
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, userInfo.UserName),
+                new Claim(JwtRegisteredClaimNames.Sub, userInfo.Emailaddress),
                 new Claim("firstName", userInfo.FirstName.ToString()),
                 new Claim("role",userInfo.UserType),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),

@@ -7,8 +7,16 @@ import { User } from '../models/User';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+
   userData = new BehaviorSubject<User>(new User());
   constructor(private http: HttpClient, private router: Router) { }
+  register(userDetails) {
+    return this.http.post<any>('/api/register', userDetails)
+      .pipe(map(response => {  
+        return response;
+      }));
+  }
+
   login(userDetails) {
     return this.http.post<any>('/api/login', userDetails)
       .pipe(map(response => {
@@ -17,6 +25,7 @@ export class AuthService {
         return response;
       }));
   }
+
   setUserDetails() {
     if (localStorage.getItem('authToken')) {
       const userDetails = new User();
@@ -27,10 +36,13 @@ export class AuthService {
       userDetails.userRole = decodeUserDetails.role;
       this.userData.next(userDetails);
     }
-  }
+  } 
+
   logout() {
     localStorage.removeItem('authToken');
     this.router.navigate(['/login']);
     this.userData.next(new User());
   }
+
+
 }

@@ -14,6 +14,7 @@ import { UserComponent } from './user/user.component';
 import { AuthGuard } from './auth/authGuard.service';
 import { HttpInterceptorService } from './auth/httpInterceptor.service';
 import { ErrorInterceptorService } from './auth/error-interceptor.service';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ErrorInterceptorService } from './auth/error-interceptor.service';
     NavMenuComponent,
     HomeComponent,
     LoginComponent,
+    RegisterComponent,
     UserComponent,
     AdminComponent
   ],
@@ -32,6 +34,7 @@ import { ErrorInterceptorService } from './auth/error-interceptor.service';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
       { path: 'user-home', component: UserComponent, canActivate: [AuthGuard] },
       { path: 'admin-home', component: AdminComponent, canActivate: [AdminGuard] }
     ])
