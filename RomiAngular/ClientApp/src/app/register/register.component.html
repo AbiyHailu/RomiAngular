@@ -48,14 +48,25 @@
                    [ngClass]="{ 'is-invalid': submitted && registerControl.password.errors }" />
             <div *ngIf="submitted && registerControl.password.errors" class="invalid-feedback">
               <div *ngIf="registerControl.password.errors.required">Password is required</div>
+              <div *ngIf="registerControl.password.errors">Password must have min 6 and max 10 characters.</div>
             </div>
           </div>
 
-          <button [disabled]="loading" class="btn btn-primary">
-            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-            Register
-          </button>
+          <div class="row numinput">
+            {{firstNumber}} + {{secondNumber}} =  &nbsp;<input type="text" class="form-control inputtest" #box (keyup)="onKey(box.value)" />
+          </div>
+          <div *ngIf="wronganswer != ''" class="alert-warning">
+            {{wronganswer}}
+          </div> 
+            <br />
+            <button [disabled]="loading" class="btn btn-primary">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+              Register
+            </button>
         </form>
+        <br/>
+        <h6>{{success}}</h6>
+
       </div>
     </div>
   </div>

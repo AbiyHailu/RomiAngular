@@ -1,7 +1,7 @@
 import { Subject } from "rxjs";
-import { OnDestroy, Component } from "@angular/core";  
-import { FoodService } from "../../services/foodService";
-import { takeUntil } from "rxjs/operators";
+import { OnDestroy, Component } from "@angular/core";   
+import { takeUntil } from "rxjs/operators"; 
+import { FoodService } from "../../../services/food.service";
 
 @Component(
   {

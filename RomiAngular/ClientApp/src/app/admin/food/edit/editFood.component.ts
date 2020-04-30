@@ -1,10 +1,10 @@
 import { Subject } from "rxjs";
-import { OnDestroy, Component } from "@angular/core";  
-import { FoodService, Food } from "../../services/foodService";
-import { takeUntil } from "rxjs/operators";
-import { SharedDataService } from "../../services/sharedDataService";
+import { OnDestroy, Component } from "@angular/core";   
+import { takeUntil } from "rxjs/operators"; 
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { SharedDataService } from "../../../services/sharedDataService"; 
+import { FoodService, Food } from "../../../services/food.service";
 
 @Component(
   {
@@ -52,8 +52,8 @@ export class EditFoodComponent implements OnDestroy {
    
   }
   assignValues() {
-    this.formdata.patchValue({ name: this.food.name })
-    this.formdata.patchValue({ unitPrice: this.food.unitPrice })
+    this.formdata.patchValue({ name: this.food.Name })
+    this.formdata.patchValue({ unitPrice: this.food.Name })
     console.log(this.formdata)
   }
   success: string

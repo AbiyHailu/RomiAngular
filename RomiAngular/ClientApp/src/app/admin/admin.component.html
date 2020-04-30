@@ -5,15 +5,25 @@
     <title></title>
 </head>
 <body>
-  <h2>This is Admin home page</h2>
   <hr />
-  <button class="btn btn-primary" (click)=fetchAdminData()>Fetch Data</button>
-  <br />
+  <div class="row">
+    <div class="col-lg-3 col-3">
+      <button class="btn btn-primary" (click)="navigateto('food-list')"> ምግብ</button>
+    </div>
+    <div class="col-lg-3 col-3">
+      <button class="btn btn-primary" (click)="navigateto('drink-list')"> መጠጥ</button>
+    </div>
+    <div class="col-lg-3 col-3">
+      <button class="btn btn-primary" (click)="navigateto('ingredient-list')">ባልትና</button>
+    </div>
+    <div class="col-lg-3 col-3">
+      <button class="btn btn-primary" (click)="navigateto('order-list')">ትእዛዞች</button>
+    </div>
+  </div>
+  <hr />
   <br />
   <div>
-    <h4>
-      {{adminData}}
-    </h4>
+    <router-outlet></router-outlet>
   </div>
 </body>
 </html>

@@ -64,6 +64,7 @@ namespace RomiAngular.Controllers
                 issuer: _config["Jwt:Issuer"],
                 audience: _config["Jwt:Audience"],
                 claims: claims,
+                notBefore: DateTime.UtcNow,
                 expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: credentials
             );

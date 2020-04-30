@@ -14,13 +14,21 @@ import { UserComponent } from './user/user.component';
 import { AuthGuard } from './auth/authGuard.service';
 import { HttpInterceptorService } from './auth/httpInterceptor.service';
 import { ErrorInterceptorService } from './auth/error-interceptor.service';
-import { RegisterComponent } from './register/register.component';
-import { FoodComponent } from './food/food.component';
-import { AddFoodComponent } from './food/add/addFood.component';
-import { ListFoodComponent } from './food/list/listFood..component';
-import { EditFoodComponent } from './food/edit/editFood.component';
-import { DeleteFoodComponent } from './food/delete/deleteFood.component';
-import { FoodModule } from './food/food.module';
+import { RegisterComponent } from './register/register.component';  
+import { AdminRouting } from './admin/admin.routing';
+import { AdminModule } from './admin/admin.module';
+import { AddFoodComponent } from './admin/food/add/addFood.component';
+import { ListFoodComponent } from './admin/food/list/listFood..component';
+import { DeleteFoodComponent } from './admin/food/delete/deleteFood.component';
+import { EditFoodComponent } from './admin/food/edit/editFood.component';
+import { AddDrinkComponent } from './admin/drink/add/addDrinkcomponent';
+import { ListDrinkComponent } from './admin/drink/list/listDrink..component';
+import { EditDrinkComponent } from './admin/drink/edit/editDrink.component';
+import { DeleteDrinkComponent } from './admin/drink/delete/deleteDrink.component';
+import { AddIngredientComponent } from './admin/ingredient/add/addIngredient.component';
+import { ListIngredientComponent } from './admin/ingredient/list/listIngredient..component';
+import { EditIngredientComponent } from './admin/ingredient/edit/editIngredient.component';
+import { DeleteIngredientComponent } from './admin/ingredient/delete/deleteIngredient.component';
 
 @NgModule({
   declarations: [
@@ -37,23 +45,34 @@ import { FoodModule } from './food/food.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule, 
-    FoodModule,
+    AdminRouting,
+    AdminModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'user-home', component: UserComponent, canActivate: [AuthGuard] },
-      { path: 'admin-home', component: AdminComponent, canActivate: [AdminGuard] },
+      { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
       {
-        path: 'foods', component: FoodComponent,
+     //   path: 'admin', component: AdminComponent, canActivate: [AdminGuard],
+        path: 'admin', component: AdminComponent, 
         children: [
-          { path: 'add', component: AddFoodComponent, canActivate: [AdminGuard] },
-          { path: 'list', component: ListFoodComponent},
-          { path: 'edit/:id', component: EditFoodComponent, canActivate: [AdminGuard]},
-          { path: 'delete', component: DeleteFoodComponent, canActivate: [AdminGuard]},
-        ]
-      },
+          { path: 'add-food', component: AddFoodComponent, canActivate: [AdminGuard] },
+          { path: 'food-list', component: ListFoodComponent }, 
+          { path: 'edit-food/:id', component: EditFoodComponent, canActivate: [AdminGuard] },
+          { path: 'delete-food', component: DeleteFoodComponent, canActivate: [AdminGuard] },
 
+          { path: 'add-drink', component: AddDrinkComponent, canActivate: [AdminGuard] },
+          { path: 'drink-list', component: ListDrinkComponent },
+          { path: 'edit-drink/:id', component: EditDrinkComponent, canActivate: [AdminGuard] },
+          { path: 'delete-drink', component: DeleteDrinkComponent, canActivate: [AdminGuard] },
+
+
+          { path: 'add-ingredient', component: AddIngredientComponent, canActivate: [AdminGuard] },
+          { path: 'ingredient-list', component: ListIngredientComponent },
+          { path: 'edit-ingredient/:id', component: EditIngredientComponent, canActivate: [AdminGuard] },
+          { path: 'delete-ingredient', component: DeleteIngredientComponent, canActivate: [AdminGuard] },
+        ]
+      }, 
     ])
   ],
   providers: [

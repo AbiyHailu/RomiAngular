@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title> add</title>
+</head>
+<body>
+  <h1>Edit</h1>
+
+  <h4>Edit Drink</h4>
+  <hr />
+  <div class="row">
+    <div class="col-md-4">
+      <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name"
+               formControlName="name">
+
+        <div *ngIf="formdata.controls['name'].invalid && (formdata.controls['name'].dirty || formdata.controls['name'].touched)" class="alert alert-danger">
+          <div *ngIf="formdata.controls['name'].errors.required">
+            Name is required.
+          </div>
+        </div>
+        <br />
+
+        <input type="number" class="form-control" id="unitPrice" name="unitPrice"
+               placeholder="Enter Unit Price" formControlName="unitPrice">
+
+        <div *ngIf="formdata.controls['unitPrice'].invalid && (formdata.controls['unitPrice'].dirty || formdata.controls['unitPrice'].touched)" class="alert alert-danger">
+          <div *ngIf="formdata.controls['unitPrice'].errors.required">
+            Unit Price is required.
+          </div>
+        </div>
+        <br />
+
+        <input type="text" class="form-control" id="description" name="description"
+               placeholder="Enter Description" formControlName="description">
+
+        <div *ngIf="formdata.controls['description'].invalid && (formdata.controls['description'].dirty || formdata.controls['description'].touched)" class="alert alert-danger">
+          <div *ngIf="formdata.controls['description'].errors.required">
+            Unit Price is required.
+          </div>
+        </div>
+        <br />
+
+        <input type="submit" [disabled]="!formdata.valid" class="btn btn-primary"
+               value="Submit">
+      </form>
+      <br />
+      <div style="color:green">
+        {{success}}
+      </div>
+      <br />
+    </div>
+  </div>
+
+  <div>
+    <a (click)="navigateToList()">Back to List</a>
+  </div>
+</body>
+</html>

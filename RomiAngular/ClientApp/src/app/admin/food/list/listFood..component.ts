@@ -1,9 +1,9 @@
 import { Subject } from "rxjs";
-import { OnDestroy, Component } from "@angular/core";  
-import { FoodService, Food } from "../../services/foodService";
+import { OnDestroy, Component } from "@angular/core";   
 import { takeUntil } from "rxjs/operators";
-import { Router } from "@angular/router";
-import { SharedDataService } from "../../services/sharedDataService";
+import { Router } from "@angular/router"; 
+import { SharedDataService } from "../../../services/sharedDataService"; 
+import { FoodService } from "../../../services/food.service";
 
 @Component(
   {
@@ -32,13 +32,13 @@ export class ListFoodComponent implements OnDestroy {
   }
 
   navigateToAdd() {
-    this.router.navigate(['foods/add/'])
+    this.router.navigate(['admin/add-food/'])
   }
 
   navigateToEdit(item: any) {
     this.shareddataService.changeItem(item);
     console.log(item, item)
-    this.router.navigate(['foods/edit/'+ item])
+    this.router.navigate(['admin/edit-food/'+ item])
   }
 
 

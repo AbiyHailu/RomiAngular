@@ -30,12 +30,12 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loading = true;
-    const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+   // const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     this.authService.login(this.loginForm.value)
       .pipe(first())
       .subscribe(
         () => {
-          this.router.navigate([returnUrl]);
+          this.router.navigate(["admin"]);
         },
         () => {
           this.loading = false;

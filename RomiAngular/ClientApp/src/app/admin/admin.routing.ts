@@ -5,4 +5,4 @@ import { ModuleWithProviders } from '@angular/core';
 
 export const routes: Routes = [];
 
-export const FoodRouting: ModuleWithProviders = RouterModule.forChild(routes);
+export const AdminRouting: ModuleWithProviders = RouterModule.forChild(routes);

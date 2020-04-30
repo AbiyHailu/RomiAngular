@@ -32,6 +32,8 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\admin\admin.component.ts" />
+    <None Remove="ClientApp\src\app\admin\admin.module.ts" />
+    <None Remove="ClientApp\src\app\admin\admin.routing.ts" />
     <None Remove="ClientApp\src\app\auth\adminGuard.service.ts" />
     <None Remove="ClientApp\src\app\auth\auth.service.ts" />
     <None Remove="ClientApp\src\app\auth\authGuard.service.ts" />
@@ -47,6 +49,8 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\admin\admin.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\admin\admin.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\admin\admin.routing.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\auth\adminGuard.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\auth\auth.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\auth\authGuard.service.ts" />

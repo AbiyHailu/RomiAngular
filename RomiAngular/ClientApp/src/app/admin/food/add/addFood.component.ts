@@ -1,9 +1,9 @@
 import { Subject } from "rxjs";
-import { OnDestroy, Component } from "@angular/core";  
-import { FoodService, Food } from "../../services/foodService";
+import { OnDestroy, Component } from "@angular/core";   
 import { takeUntil } from "rxjs/operators";
 import { FormGroup, Validators, FormControl } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Router } from "@angular/router"; 
+import { FoodService, Food } from "../../../services/food.service";
 
 @Component(
   {

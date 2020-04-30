@@ -6,7 +6,7 @@
 </head>
 <body>
 
-  <h1>Romi Hotel Food Menu</h1>
+  <h5>Romi Hotel Ingredient List</h5>
 
   <p>
     <a (click) = "navigateToAdd()">Create New</a>
@@ -30,18 +30,18 @@
       </tr>
     </thead>
     <tbody> 
-      <tr *ngFor="let food of foods">
+      <tr *ngFor="let ingredient of ingredients">
         <td>
-          {{food.name}}
+          {{ingredient.name}}
         </td>
         <td>
-          {{food.unitPrice}}
+          {{ingredient.unitPrice}}
         </td>
         <td>
-          {{food.description}}
+          {{ingredient.description}}
         </td>
         <td>
-          <a (click) ="navigateToEdit(food.foodID)">Edit</a> |
+          <a (click) ="navigateToEdit(ingredient.ingredientID)">Edit</a> |
           <a>Details</a> |
           <a>Delete</a>
         </td>

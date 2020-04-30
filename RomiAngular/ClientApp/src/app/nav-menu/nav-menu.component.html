@@ -3,7 +3,7 @@
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">RomiAngular</a>
+      <a class="navbar-brand" [routerLink]="['/']">ሮሚ ሆቴል</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -37,14 +37,18 @@
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
             <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.userRole==userRole.Admin" [routerLink]='["/admin-home"]' [routerLink]=''>AdminHome</a>
           </li>
+
+          <li class="nav-item" [routerLinkActive]='["link-active"]' *ngIf="userData.isLoggedIn">
+            <a class="nav-link text-dark">Welcome <b>{{userData.firstName}},</b> </a>
+          </li>
+
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
             <a class="nav-link text-dark" *ngIf="userData.isLoggedIn" (click)=logout() [routerLink]=''>Logout</a>
           </li>
-          <li class="nav-item" [routerLinkActive]='["link-active"]' *ngIf="userData.isLoggedIn">
-            <a class="nav-link text-dark">Welcome <b>{{userData.firstName}}</b> </a>
-          </li>
         </ul>
       </div>
+
+
     </div>
   </nav>
 </header>

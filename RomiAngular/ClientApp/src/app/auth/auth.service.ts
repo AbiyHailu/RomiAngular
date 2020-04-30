@@ -11,10 +11,7 @@ export class AuthService {
   userData = new BehaviorSubject<User>(new User());
   constructor(private http: HttpClient, private router: Router) { }
   register(userDetails) {
-    return this.http.post<any>('/api/register', userDetails)
-      .pipe(map(response => {  
-        return response;
-      }));
+    return this.http.post<any>('/api/register', userDetails) 
   }
 
   login(userDetails) {

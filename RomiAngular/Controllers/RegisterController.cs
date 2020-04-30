@@ -2,8 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RomiAngular.Data;
 using RomiAngular.Models;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Linq; 
 
 namespace RomiAngular.Controllers
 {
@@ -22,16 +21,16 @@ namespace RomiAngular.Controllers
         [AllowAnonymous]
         public  IActionResult Register(User user)
         {
-            IActionResult response = ValidationProblem();
+            IActionResult response = Unauthorized();
             User registerdUser = _context.Users.SingleOrDefault(x => x.Emailaddress == user.Emailaddress);
             if (registerdUser == null)
             {
                 user.UserType = "User";
                 _context.Users.Add(user);
-               _context.SaveChangesAsync();
-                return response = Ok();
-            }
-            return response;
+                _context.SaveChangesAsync();
+                return Ok("{}");
+            } 
+            return response; 
         } 
     }
 }
