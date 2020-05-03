@@ -36,7 +36,7 @@ export class ListDrinkComponent implements OnDestroy {
   }
 
   navigateToEdit(item: any) {
-    this.shareddataService.changeItem(item);
+    this.shareddataService.changeDrink(item);
     console.log(item, item)
     this.router.navigate(['admin/edit-drink/'+ item])
   }

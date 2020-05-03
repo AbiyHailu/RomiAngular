@@ -44,7 +44,7 @@ export class AddIngredientComponent implements OnDestroy {
     this.ingredientService.addIngredient(data)
       .pipe(takeUntil(this.subject))
       .subscribe(res => {
-        this.success = "IngredientService Successfuly added!"; 
+        this.success = "Ingredient Successfuly added!"; 
         console.log('added', res),
           setTimeout(() => {
             this.success = "";

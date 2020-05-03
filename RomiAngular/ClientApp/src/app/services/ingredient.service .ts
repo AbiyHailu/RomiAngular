@@ -17,7 +17,11 @@ export class IngredientService {
 
   addIngredient(ingredient: Ingredient): Observable<any> { 
     return <Observable<any>>this.http.post("/api/ingredients", ingredient);
-  } 
+  }
+
+  editIngredient(ing: any): Observable<any> { 
+    return <Observable<any>>this.http.put("/api/ingredients/" + ing.ingredientID, ing);
+  }
 }
 export interface Ingredient {
   IngredientID: any;

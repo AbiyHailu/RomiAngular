@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService) { 
+  }
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       emailaddress: ['', [Validators.required, Validators.email]],
@@ -30,12 +31,13 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loading = true;
-   // const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     this.authService.login(this.loginForm.value)
       .pipe(first())
       .subscribe(
         () => {
-          this.router.navigate(["admin"]);
+          this.router.navigate([returnUrl]);
+         // this.router.navigate(["admin"]);
         },
         () => {
           this.loading = false;

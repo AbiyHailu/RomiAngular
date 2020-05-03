@@ -23,7 +23,7 @@ export class ListFoodComponent implements OnDestroy {
     private router: Router,
   ) {
     this.foods =[]
-    foodService.getFoods()
+    this.foodService.getFoods()
       .pipe(takeUntil(this.subject))
       .subscribe(res => {
         console.log('res', res); 
@@ -36,7 +36,7 @@ export class ListFoodComponent implements OnDestroy {
   }
 
   navigateToEdit(item: any) {
-    this.shareddataService.changeItem(item);
+    this.shareddataService.changeFood(item);
     console.log(item, item)
     this.router.navigate(['admin/edit-food/'+ item])
   }

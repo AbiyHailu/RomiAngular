@@ -15,25 +15,15 @@ import { DrinkService, Drink } from "../../../services/drink.service ";
 
 export class EditDrinkComponent implements OnDestroy {
 
-  drink: Drink;
-  subject: Subject<void> = new Subject();
+  drink: any;
+  subject: Subject<void> = new Subject(); 
+  enableForm: boolean = false
   constructor(
     private drinkService: DrinkService, 
     private shareddataService: SharedDataService,
     private router: Router,
-  ) {
-    this.formdata = new FormGroup({
-      name: new FormControl("", Validators.compose([Validators.required])),
-      unitPrice: new FormControl("", Validators.compose([Validators.required])),
-      description: new FormControl("", Validators.compose([Validators.required]))
-    });
-  
-  }
-
-  formdata;
-  ngOnInit() {
-
-    this.shareddataService._currentitem
+  ) { 
+    this.shareddataService._currentDrink
       .pipe(takeUntil(this.subject))
       .subscribe(res => {
         console.log("res", res)
@@ -42,12 +32,28 @@ export class EditDrinkComponent implements OnDestroy {
           .subscribe(res => {
             this.drink = res
             console.log("this.drink", this.drink)
-
- if (this.drink) {
-      this.assignValues()
-    }
+            if (this.drink) {
+              this.CreateForm()
+            } 
           })
-      })  
+      }) 
+  }
+
+  formdata;
+  ngOnInit() { 
+     
+  }
+
+  CreateForm() {
+    this.formdata = new FormGroup({
+      name: new FormControl("", Validators.compose([Validators.required])),
+      unitPrice: new FormControl("", Validators.compose([Validators.required])),
+      description: new FormControl("", Validators.compose([Validators.required]))
+    });
+    this.formdata.patchValue({ name: this.drink.name })
+    this.formdata.patchValue({ unitPrice: this.drink.unitPrice })
+    this.formdata.patchValue({ description: this.drink.description })
+    this.enableForm = true
   }
 
   assignValues() {
@@ -57,17 +63,16 @@ export class EditDrinkComponent implements OnDestroy {
   }
   success: string
   onClickSubmit(data) {
-    //console.log(data)
-    //this.drinkService.adddrinks(data)
-    //  .pipe(takeUntil(this.subject))
-    //  .subscribe(res => {
-    //    this.success = "Drink Successfuly added!";
-    //    console.log('added', res),
-    //      setTimeout(() => {
-    //        this.success = "";
-    //        this.formdata.reset()
-    //      }, 3000);
-    //  })
+    this.drinkService.editDrink(data)
+      .pipe(takeUntil(this.subject))
+      .subscribe(res => {
+        this.success = "Drink Successfuly Edited!"; 
+          setTimeout(() => {
+            this.success = "";
+            this.formdata.reset()
+            this.navigateToList()
+          }, 3000);
+      })
   }
   navigateToList() {
     this.router.navigate(['admin/drink-list/'])

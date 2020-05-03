@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RomiAngular.Data;
@@ -44,6 +45,8 @@ namespace RomiWeb.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
+
+        [Authorize(Policy = Policies.Admin)]
         public async Task<IActionResult> PutIngredient(int id, Ingredient ingredient)
         {
             if (id != ingredient.IngredientID)
@@ -75,7 +78,8 @@ namespace RomiWeb.Controllers
         // POST: api/Ingredients
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPost]
+        [HttpPost] 
+        [Authorize(Policy = Policies.Admin)]
         public async Task<ActionResult<Ingredient>> PostIngredient(Ingredient ingredient)
         {
             _context.Ingredients.Add(ingredient);
@@ -85,7 +89,8 @@ namespace RomiWeb.Controllers
         }
 
         // DELETE: api/Ingredients/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}")] 
+        [Authorize(Policy = Policies.Admin)]
         public async Task<ActionResult<Ingredient>> DeleteIngredient(int id)
         {
             var ingredient = await _context.Ingredients.FindAsync(id);

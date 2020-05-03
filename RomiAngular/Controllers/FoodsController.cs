@@ -78,7 +78,7 @@ namespace RomiWeb.Controllers
         // more details see https://aka.ms/RazorPagesCRUD.
         
         [HttpPost]
-        [Authorize(Policy = Policies.User)]
+        [Authorize(Policy = Policies.Admin)]
         public async Task<ActionResult<Food>> PostFood(Food food)
         {
             _context.Foods.Add(food);

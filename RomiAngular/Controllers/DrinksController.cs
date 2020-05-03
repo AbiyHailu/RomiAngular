@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RomiAngular.Data;
@@ -44,7 +45,8 @@ namespace RomiAngular.Controllers
         // PUT: api/Drinks/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPut("{id}")]
+        [HttpPut("{id}")] 
+        [Authorize(Policy = Policies.Admin)]
         public async Task<IActionResult> PutDrink(int id, Drink drink)
         {
             if (id != drink.DrinkID)
@@ -77,6 +79,8 @@ namespace RomiAngular.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
+
+        [Authorize(Policy = Policies.Admin)]
         public async Task<ActionResult<Drink>> PostDrink(Drink drink)
         {
             _context.Drinks.Add(drink);
@@ -86,7 +90,8 @@ namespace RomiAngular.Controllers
         }
 
         // DELETE: api/Drinks/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}")] 
+        [Authorize(Policy = Policies.Admin)]
         public async Task<ActionResult<Drink>> DeleteDrink(int id)
         {
             var drink = await _context.Drinks.FindAsync(id);

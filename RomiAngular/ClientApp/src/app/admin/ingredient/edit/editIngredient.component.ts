@@ -15,25 +15,15 @@ import { IngredientService, Ingredient } from "../../../services/ingredient.serv
 
 export class EditIngredientComponent implements OnDestroy {
 
-  ingredient: Ingredient;
+  ingredient: any;
   subject: Subject<void> = new Subject();
+  enableForm: boolean = false
   constructor(
     private ingredientService: IngredientService, 
     private shareddataService: SharedDataService,
     private router: Router,
-  ) {
-    this.formdata = new FormGroup({
-      name: new FormControl("", Validators.compose([Validators.required])),
-      unitPrice: new FormControl("", Validators.compose([Validators.required])),
-      description: new FormControl("", Validators.compose([Validators.required]))
-    });
-  
-  }
-
-  formdata;
-  ngOnInit() {
-
-    this.shareddataService._currentitem
+  ) { 
+    this.shareddataService._currentIngredient
       .pipe(takeUntil(this.subject))
       .subscribe(res => {
         console.log("res", res)
@@ -41,34 +31,41 @@ export class EditIngredientComponent implements OnDestroy {
           .pipe(takeUntil(this.subject))
           .subscribe(res => {
             this.ingredient = res
-            console.log("this.food", this.ingredient)
-
             if (this.ingredient) {
-              this.assignValues()
-            }
+              this.CreateForm()
+            }  
           })
-      })
-    
-   
+      })  
   }
-  assignValues() {
-    this.formdata.patchValue({ name: this.ingredient.Name })
-    this.formdata.patchValue({ unitPrice: this.ingredient.Name })
-    console.log(this.formdata)
+
+  formdata;
+  ngOnInit() {
+
   }
+
+  CreateForm() {
+    this.formdata = new FormGroup({
+      name: new FormControl("", Validators.compose([Validators.required])),
+      unitPrice: new FormControl("", Validators.compose([Validators.required])),
+      description: new FormControl("", Validators.compose([Validators.required]))
+    });
+    this.formdata.patchValue({ name: this.ingredient.name })
+    this.formdata.patchValue({ unitPrice: this.ingredient.unitPrice })
+    this.formdata.patchValue({ description: this.ingredient.description })
+    this.enableForm = true
+  }
+
   success: string
   onClickSubmit(data) {
-    //console.log(data)
-    //this.foodService.addFoods(data)
-    //  .pipe(takeUntil(this.subject))
-    //  .subscribe(res => {
-    //    this.success = "Food Successfuly added!";
-    //    console.log('added', res),
-    //      setTimeout(() => {
-    //        this.success = "";
-    //        this.formdata.reset()
-    //      }, 3000);
-    //  })
+    this.ingredientService.editIngredient (data)
+      .pipe(takeUntil(this.subject))
+      .subscribe(res => {
+        this.success = "Ingredient Successfuly Edited!"; 
+          setTimeout(() => {
+            this.success = "";
+            this.formdata.reset()
+          }, 3000);
+      })
   }
   navigateToList() {
     this.router.navigate(['admin/ingredient-list/'])

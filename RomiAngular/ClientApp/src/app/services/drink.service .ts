@@ -17,7 +17,11 @@ export class DrinkService {
 
   addDrinks(drink: Drink): Observable<any> { 
     return <Observable<any>>this.http.post("/api/drinks", drink);
-  } 
+  }
+
+  editDrink(drink: any): Observable<any> { 
+    return <Observable<any>>this.http.put("/api/drinks/" + drink.drinkID, drink);
+  }
 }
 
 export interface Drink {

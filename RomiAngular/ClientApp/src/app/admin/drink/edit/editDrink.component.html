@@ -11,7 +11,7 @@
   <hr />
   <div class="row">
     <div class="col-md-4">
-      <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+      <form *ngIf ="enableForm" [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
         <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name"
                formControlName="name">
 

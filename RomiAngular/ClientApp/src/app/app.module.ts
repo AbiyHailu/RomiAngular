@@ -53,22 +53,20 @@ import { DeleteIngredientComponent } from './admin/ingredient/delete/deleteIngre
       { path: 'register', component: RegisterComponent },
       { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
       {
-     //   path: 'admin', component: AdminComponent, canActivate: [AdminGuard],
-        path: 'admin', component: AdminComponent, 
+        path: 'admin', component: AdminComponent, canActivate: [AdminGuard], 
         children: [
           { path: 'add-food', component: AddFoodComponent, canActivate: [AdminGuard] },
-          { path: 'food-list', component: ListFoodComponent }, 
+          { path: 'food-list', component: ListFoodComponent, canActivate: [AdminGuard] }, 
           { path: 'edit-food/:id', component: EditFoodComponent, canActivate: [AdminGuard] },
           { path: 'delete-food', component: DeleteFoodComponent, canActivate: [AdminGuard] },
 
           { path: 'add-drink', component: AddDrinkComponent, canActivate: [AdminGuard] },
-          { path: 'drink-list', component: ListDrinkComponent },
+          { path: 'drink-list', component: ListDrinkComponent, canActivate: [AdminGuard] },
           { path: 'edit-drink/:id', component: EditDrinkComponent, canActivate: [AdminGuard] },
           { path: 'delete-drink', component: DeleteDrinkComponent, canActivate: [AdminGuard] },
 
-
           { path: 'add-ingredient', component: AddIngredientComponent, canActivate: [AdminGuard] },
-          { path: 'ingredient-list', component: ListIngredientComponent },
+          { path: 'ingredient-list', component: ListIngredientComponent, canActivate: [AdminGuard]  },
           { path: 'edit-ingredient/:id', component: EditIngredientComponent, canActivate: [AdminGuard] },
           { path: 'delete-ingredient', component: DeleteIngredientComponent, canActivate: [AdminGuard] },
         ]

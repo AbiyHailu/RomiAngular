@@ -36,7 +36,7 @@ export class ListIngredientComponent implements OnDestroy {
   }
 
   navigateToEdit(item: any) {
-    this.shareddataService.changeItem(item);
+    this.shareddataService.changeIngredient(item);
     console.log(item, item)
     this.router.navigate(['admin/edit-ingredient/'+ item])
   }

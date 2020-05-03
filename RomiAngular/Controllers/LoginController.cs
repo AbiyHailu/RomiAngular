@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text; 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -36,10 +37,13 @@ namespace RomiAngular.Controllers
             if (user != null)
             {
                 var tokenString = GenerateJWT(user);
+                var refreshToken = GenerateRefreshToken();
+               // user.RefreshToken = refreshToken;
                 response = Ok(new
                 {
                     token = tokenString,
                     userDetails = user,
+                    refreshToken = refreshToken
                 });
             }
             return response;
@@ -65,10 +69,19 @@ namespace RomiAngular.Controllers
                 audience: _config["Jwt:Audience"],
                 claims: claims,
                 notBefore: DateTime.UtcNow,
-                expires: DateTime.Now.AddMinutes(30),
+                expires: DateTime.Now.AddMinutes(120),
                 signingCredentials: credentials
             );
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+        public string GenerateRefreshToken()
+        {
+            var randomNumber = new byte[32];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomNumber);
+                return Convert.ToBase64String(randomNumber);
+            }
         }
     }
 }
