@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using RomiAngular.Data;
 using RomiAngular.Models;
@@ -40,7 +41,7 @@ namespace RomiAngular
                         ValidIssuer = Configuration["Jwt:Issuer"],
                         ValidAudience = Configuration["Jwt:Audience"],
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:SecretKey"])),
-                        ClockSkew = TimeSpan.FromMinutes(10)
+                        ClockSkew =TimeSpan.Zero
                     };
                     services.AddCors();
                 });
@@ -61,10 +62,12 @@ namespace RomiAngular
         {
             if (env.IsDevelopment())
             {
+                IdentityModelEventSource.ShowPII = true;
                 app.UseDeveloperExceptionPage();
             }
             else
             {
+                IdentityModelEventSource.ShowPII = true;
                 app.UseExceptionHandler("/Error"); 
                 app.UseHsts();
             }

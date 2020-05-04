@@ -36,14 +36,11 @@ namespace RomiAngular.Controllers
             User user = AuthenticateUser(login);
             if (user != null)
             {
-                var tokenString = GenerateJWT(user);
-                var refreshToken = GenerateRefreshToken();
-               // user.RefreshToken = refreshToken;
+                var tokenString = GenerateJWT(user);  
                 response = Ok(new
                 {
                     token = tokenString,
-                    userDetails = user,
-                    refreshToken = refreshToken
+                    userDetails = user  
                 });
             }
             return response;
@@ -68,20 +65,10 @@ namespace RomiAngular.Controllers
                 issuer: _config["Jwt:Issuer"],
                 audience: _config["Jwt:Audience"],
                 claims: claims,
-                notBefore: DateTime.UtcNow,
-                expires: DateTime.Now.AddMinutes(120),
+                expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: credentials
             );
             return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-        public string GenerateRefreshToken()
-        {
-            var randomNumber = new byte[32];
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(randomNumber);
-                return Convert.ToBase64String(randomNumber);
-            }
-        }
+        } 
     }
 }

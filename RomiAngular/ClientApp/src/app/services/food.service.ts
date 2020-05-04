@@ -20,8 +20,7 @@ export class FoodService {
   }
 
   editFood( food: any): Observable<any> {
-    console.log( food)
-    return <Observable<any>>this.http.put("/api/foods/"+food.foodID, food );
+    return <Observable<any>>this.http.put("/api/foods/" + food.foodID, food );
   }
 }
 export interface Food {

@@ -35,11 +35,10 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value)
       .pipe(first())
       .subscribe(
-        () => {
-          this.router.navigate([returnUrl]);
-         // this.router.navigate(["admin"]);
+        data => { 
+          this.router.navigate([returnUrl]); 
         },
-        () => {
+        error => { 
           this.loading = false;
           this.loginForm.reset();
           this.loginForm.setErrors({

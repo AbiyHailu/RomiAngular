@@ -63,6 +63,8 @@ export class EditDrinkComponent implements OnDestroy {
   }
   success: string
   onClickSubmit(data) {
+
+    data.drinkID = this.drink.drinkID 
     this.drinkService.editDrink(data)
       .pipe(takeUntil(this.subject))
       .subscribe(res => {

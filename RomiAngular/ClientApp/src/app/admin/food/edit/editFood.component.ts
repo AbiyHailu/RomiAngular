@@ -26,7 +26,6 @@ export class EditFoodComponent implements OnDestroy {
     this.shareddataService._currentFood
       .pipe(takeUntil(this.subject))
       .subscribe(res => {
-        console.log("res", res)
         this.foodService.getFoodById(res)
           .pipe(takeUntil(this.subject))
           .subscribe(res => {
@@ -43,7 +42,7 @@ export class EditFoodComponent implements OnDestroy {
   }
 
   CreateForm() {
-    this.formdata = new FormGroup({
+    this.formdata = new FormGroup({ 
       name: new FormControl("", Validators.compose([Validators.required])),
       unitPrice: new FormControl("", Validators.compose([Validators.required])),
       description: new FormControl("", Validators.compose([Validators.required]))
@@ -55,7 +54,8 @@ export class EditFoodComponent implements OnDestroy {
   }
 
   success: string
-  onClickSubmit(data) {  
+  onClickSubmit(data) {
+    data.foodID =this.food.foodID 
     this.foodService.editFood(data)
       .pipe(takeUntil(this.subject))
       .subscribe(res => {

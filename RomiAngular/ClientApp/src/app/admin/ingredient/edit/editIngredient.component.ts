@@ -25,8 +25,7 @@ export class EditIngredientComponent implements OnDestroy {
   ) { 
     this.shareddataService._currentIngredient
       .pipe(takeUntil(this.subject))
-      .subscribe(res => {
-        console.log("res", res)
+      .subscribe(res => { 
         this.ingredientService.getIngredientById(res)
           .pipe(takeUntil(this.subject))
           .subscribe(res => {
@@ -57,6 +56,8 @@ export class EditIngredientComponent implements OnDestroy {
 
   success: string
   onClickSubmit(data) {
+    console.log("this.ingredient", this.ingredient)
+    data.ingredientID = this.ingredient.ingredientID;
     this.ingredientService.editIngredient (data)
       .pipe(takeUntil(this.subject))
       .subscribe(res => {
