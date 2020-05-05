@@ -28,7 +28,11 @@ import { DeleteDrinkComponent } from './admin/drink/delete/deleteDrink.component
 import { AddIngredientComponent } from './admin/ingredient/add/addIngredient.component';
 import { ListIngredientComponent } from './admin/ingredient/list/listIngredient..component';
 import { EditIngredientComponent } from './admin/ingredient/edit/editIngredient.component';
-import { DeleteIngredientComponent } from './admin/ingredient/delete/deleteIngredient.component';
+import { DeleteIngredientComponent } from './admin/ingredient/delete/deleteIngredient.component'; 
+import { UserRouting } from './user/user.routing';
+import { AddOrderComponent } from './user/addOrder/addOrder.component';
+import { OrderHistoryComponent } from './user/orderHistory/orderHistory.component';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -46,14 +50,20 @@ import { DeleteIngredientComponent } from './admin/ingredient/delete/deleteIngre
     FormsModule,
     ReactiveFormsModule, 
     AdminRouting,
+    UserRouting, 
     AdminModule,
+    UserModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
-      {
-        path: 'admin', component: AdminComponent, canActivate: [AdminGuard], 
+      { path: 'user', component: UserComponent, canActivate: [AuthGuard],
+        children: [
+           { path: 'add-order', component: AddOrderComponent },
+           { path: 'order-history', component: OrderHistoryComponent, canActivate: [AuthGuard] }
+        ]
+      },
+      { path: 'admin', component: AdminComponent, canActivate: [AdminGuard], 
         children: [
           { path: 'add-food', component: AddFoodComponent, canActivate: [AdminGuard] },
           { path: 'food-list', component: ListFoodComponent, canActivate: [AdminGuard] }, 

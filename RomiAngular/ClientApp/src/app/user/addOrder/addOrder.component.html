@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+  <div class="row">
+
+    <div class="col-lg-3">
+      <div *ngFor="let food of foods; index as i;">
+        <input type="checkbox" id="food" name="food" #box (change)="checkCheckBoxvalue(box.checked,food, 'food')">
+        <label for="food">{{food.name}} </label>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <div *ngFor="let drink of drinks; index as i;">
+        <input type="checkbox" id="drink" name="drink" #box (change)="checkCheckBoxvalue(box.checked,drink, 'drink')">
+        <label for="drink">{{drink.name}} </label>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <div *ngFor="let ing of ingredients; index as i;">
+        <input type="checkbox" id="ing" name="ing" #box (change)="checkCheckBoxvalue(box.checked,ing, 'ing')">
+        <label for="ing">{{ing.name}} </label>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-12">
+    <h5>Your Order</h5>
+    <h5 *ngIf="orderfood?.length > 0">
+      ምግብ
+    </h5>
+    <div *ngFor="let ofood of orderfood; index as i;">
+      {{ofood.name}}
+    </div>
+    <h5 *ngIf="orderdrink?.length > 0">
+      መጠጥ
+    </h5>
+    <div *ngFor="let odrink of orderdrink; index as i;">
+      {{odrink.name}}
+    </div>
+    <h5 *ngIf="orderingredient?.length > 0">
+      ባልትና
+    </h5>
+    <div *ngFor="let oing of orderingredient; index as i;">
+      {{oing.name}}
+    </div>
+   
+  </div>  
+</body>
+</html>

@@ -45,7 +45,11 @@
     <None Remove="ClientApp\src\app\models\user.ts" />
     <None Remove="ClientApp\src\app\register\register.component.ts" />
     <None Remove="ClientApp\src\app\services\user.service.ts" />
+    <None Remove="ClientApp\src\app\user\addOrder\addOrder.component.ts" />
+    <None Remove="ClientApp\src\app\user\orderHistory\orderHistory.component.ts" />
     <None Remove="ClientApp\src\app\user\user.component.ts" />
+    <None Remove="ClientApp\src\app\user\user.module.ts" />
+    <None Remove="ClientApp\src\app\user\user.routing.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,6 +68,10 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\services\user.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\user\addOrder\addOrder.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\user\orderHistory\orderHistory.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\user\user.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\user\user.routing.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\user\user.component.ts" />
   </ItemGroup>
 

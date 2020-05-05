@@ -5,15 +5,16 @@
     <title></title>
 </head>
 <body>
-  <h2>This is User home page</h2>
   <hr />
-  <button class="btn btn-primary" (click)=fetchUserData()>Fetch Data</button>
-  <br />
+  <div class="row">
+    <div class="col-lg-3 col-3">
+      <button class="btn btn-primary" (click)="navigateto('food-list')"> order history</button>
+    </div> 
+  </div>
+  <hr />
   <br />
   <div>
-    <h4>
-      {{userData}}
-    </h4>
+    <router-outlet></router-outlet>
   </div>
 </body>
 </html>
