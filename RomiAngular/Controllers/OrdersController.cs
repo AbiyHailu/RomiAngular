@@ -78,10 +78,12 @@ namespace RomiWeb.Controllers
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
         public async Task<ActionResult<Order>> PostOrder(Order order)
-        {
+        {  
+            order.OrderDate = DateTime.Now;
+            order.deliverd = false;
+            order.markasread = false;
             _context.Orders.Add(order);
-            await _context.SaveChangesAsync();
-
+            await _context.SaveChangesAsync(); 
             return CreatedAtAction("GetOrder", new { id = order.OrderID }, order);
         }
 

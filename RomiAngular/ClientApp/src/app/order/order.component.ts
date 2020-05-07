@@ -163,7 +163,10 @@ export class OrderComponent implements OnInit, OnDestroy {
     console.log("this.total", this.total)
     console.log("this.vat", this.vat)
   }
-   
+
+  submitOrdr(asUserorGust) {
+
+  }
   navigateto(val) {
     this.router.navigate(['user/' + val]);
   }

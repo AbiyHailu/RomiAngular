@@ -16,8 +16,15 @@ namespace RomiAngular.Models
         public List<Food> Foods { get; set; }
         public List<Drink> Drinks { get; set; }
         public List<Ingredient> Ingredients { get; set; }
+
         [Column(TypeName = "decimal(10,2)")] 
         public decimal TotalExcVat { get; set; }
+
+        [Column(TypeName = "decimal(10,2)")]
+        public decimal  servicecharge { get; set; }
+
+        [Column(TypeName = "decimal(10,2)")]
+        public decimal vat { get; set; }
         [Column(TypeName = "decimal(10,2)")]
         public decimal TotalIncVat { get; set; }
         public bool deliverd { get; set; }
