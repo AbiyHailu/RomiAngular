@@ -79,8 +79,11 @@
           <h5 class="mb-0">
             Your Order
           </h5>
+          <h6 *ngIf="totalexc == 0" class="mb-0">
+            Your havent Selected an item yet.
+          </h6>
         </div>
-        <div class="card-body">
+        <div *ngIf="totalexc > 0" class="card-body">
           <div class="row">
             <h5 *ngIf="orderfood?.length > 0">
               ምግብ
@@ -166,6 +169,21 @@
             </div>
             <div class="col-lg-4 col-6">
               {{total}}
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-lg-4 col-12">
+              <button class="btn btn-primary btn-checkout" (click)="checkoutUser()">
+                Checkout as Registered User
+              </button>
+            </div>
+            <br />
+            <br />
+            <div class="col-lg-4 col-12">
+              <button class="btn btn-primary  btn-checkout" (click)="checkoutGust()">
+                Checkout as Gust
+              </button>
             </div>
           </div>
         </div>

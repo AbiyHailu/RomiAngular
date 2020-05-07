@@ -33,7 +33,9 @@ import { UserRouting } from './user/user.routing';
 import { AddOrderComponent } from './user/addOrder/addOrder.component';
 import { OrderHistoryComponent } from './user/orderHistory/orderHistory.component';
 import { UserModule } from './user/user.module'; 
-import { OrderComponent } from './order/order.component';
+import { OrderComponent } from './order/order.component'; 
+import { CheckoutGustComponent } from './checkoutGust/checkoutGust.component';
+import { CheckoutUserComponent } from './checkoutUser/checkoutUser.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { OrderComponent } from './order/order.component';
     RegisterComponent,
     UserComponent,
     AdminComponent,
-    OrderComponent
+    OrderComponent,
+    CheckoutGustComponent,
+    CheckoutUserComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -53,13 +57,15 @@ import { OrderComponent } from './order/order.component';
     ReactiveFormsModule, 
     AdminRouting,
     UserRouting, 
-    AdminModule,
+    AdminModule, 
     UserModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'order', component: OrderComponent },
+      { path: 'checkout-gust', component: CheckoutGustComponent },
+      { path: 'checkout-user', component: CheckoutUserComponent },
       { path: 'user', component: UserComponent, canActivate: [AuthGuard],
         children: [
            { path: 'add-order', component: AddOrderComponent },

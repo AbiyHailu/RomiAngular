@@ -5,6 +5,7 @@ import { takeUntil } from "rxjs/operators";
 import { Ingredient, IngredientService } from "../services/ingredient.service ";
 import { Drink, DrinkService } from "../services/drink.service ";
 import { Food, FoodService } from "../services/food.service";
+import { SharedDataService } from "../services/sharedDataService";
 
 @Component({
   selector: 'app-order',
@@ -23,7 +24,8 @@ export class OrderComponent implements OnInit, OnDestroy {
     private foodService: FoodService,
     private drinkService: DrinkService,
     private ingredientService: IngredientService,
-    private router: Router
+    private router: Router,
+    private sharedDataService: SharedDataService 
   ) {
 
     this.foodService.getFoods()
@@ -163,10 +165,41 @@ export class OrderComponent implements OnInit, OnDestroy {
     console.log("this.total", this.total)
     console.log("this.vat", this.vat)
   }
+  orderToSubmit = {
+    PreferdDeliveryDate: Date,
+    foods: {},
+    drinks: {},
+    ingredients: {},
+    totalExcVat: 0,
+    servicecharge:0,
+    vat: 0,
+    totalIncVat: 0, 
+  }
 
-  submitOrdr(asUserorGust) {
+  checkoutGust() {
+    console.log(true)
+    this.checkoutOrder()
+    this.sharedDataService.changeOrder(this.orderToSubmit)
+    this.router.navigate(['checkout-gust']);
+  }
+  checkoutUser() {
+    this.checkoutOrder()
+    this.sharedDataService.changeOrder(this.orderToSubmit)
+    this.router.navigate(['checkout-user']);
+  }
+  checkoutOrder( ) {
+    this.orderToSubmit.PreferdDeliveryDate
+    this.orderToSubmit.foods = this.orderfood
+    this.orderToSubmit.drinks=this.orderdrink
+    this.orderToSubmit.ingredients= this.orderingredient
+    this.orderToSubmit.totalExcVat = this.totalexc
+    this.orderToSubmit.servicecharge = this.service
+    this.orderToSubmit.vat = this.vat 
+    this.orderToSubmit.totalIncVat = this.total 
+    console.log("this.orderToSubmit", this.orderToSubmit)
 
   }
+
   navigateto(val) {
     this.router.navigate(['user/' + val]);
   }

@@ -24,7 +24,7 @@ export class SharedDataService {
 
   private _ordersource = new BehaviorSubject<any>('');
   _currentOrder = this._ordersource.asObservable();
-  changeOrder(order: string) {
+  changeOrder(order: any) {
     this._ordersource.next(order)
-  }
+  } 
 }

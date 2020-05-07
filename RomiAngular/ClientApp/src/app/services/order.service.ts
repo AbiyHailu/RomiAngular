@@ -30,7 +30,7 @@ export interface Order {
   PreferdDeliveryDate:any
   Foods:any
   Drinks: any
-  Ingredients:any:any
+  Ingredients:any 
   TotalExcVat: number
   servicecharge: number
   vat: number
