@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" (click)="openFoodDiv()">
+            የምግብ ዝርዝሮች
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapseOne" [ngClass]="{'collapse show': toggle1, 'collapse': !toggle1}"  class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+          <div class="row">
+            <div *ngFor="let food of foods; index as i;"> 
+              <div class="col-lg-4">
+                <input type="checkbox" id="food" name="food" #box (change)="checkCheckBoxvalue(box.checked,food, 'food')">
+                <label for="food">{{food.name}} </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" (click)="openDrinkDiv()">
+             የመጠጥ ዝርዝሮች
+          </button> 
+</h5>
+      </div>
+      <div id="collapseTwo" [ngClass]="{'collapse show': toggle2, 'collapse': !toggle2}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div class="card-body">
+          <div class="row">
+            <div *ngFor="let drink of drinks; index as i;">
+              <div class="col-lg-3">
+                <input type="checkbox" id="drink" name="drink" #box (change)="checkCheckBoxvalue(box.checked,drink, 'drink')">
+                <label for="drink">{{drink.name}} </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" (click)="openIngDiv()">
+            የባልትና ዝርዝሮች
+          </button>
+        </h5>
+      </div>
+      <div id="collapseThree" [ngClass]="{'collapse show': toggle3, 'collapse': !toggle3}" aria-labelledby="headingThree" data-parent="#accordion">
+        <div class="card-body">
+          <div class="row">
+            <div *ngFor="let ing of ingredients; index as i;">
+              <div class="col-lg-3">
+                <input type="checkbox" id="ing" name="ing" #box (change)="checkCheckBoxvalue(box.checked,ing, 'ing')">
+                <label for="ing">{{ing.name}} </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            Your Order
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <h5 *ngIf="orderfood?.length > 0">
+              ምግብ
+            </h5>
+            <br />
+            <div class="col-lg-12" *ngFor="let ofood of orderfood; index as i;">
+              <div class="row">
+                <div class="col-lg-4 col-6">
+                  {{ofood.name}}
+                </div>
+                <div class="col-lg-4 col-6">
+                  {{ofood.unitPrice}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <h5 *ngIf="orderdrink?.length > 0">
+              መጠጥ
+              <br />
+            </h5>
+            <div class="col-lg-12" *ngFor="let odrink of orderdrink; index as i;">
+              <div class="row">
+                <div class="col-lg-4 col-6">
+                  {{odrink.name}}
+                </div>
+                <div class="col-lg-4 col-6">
+                  {{odrink.unitPrice}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <h5 *ngIf="orderingredient?.length > 0">
+              ባልትና
+            </h5>
+            <br />
+            <div class="col-lg-12" *ngFor="let oing of orderingredient; index as i;">
+              <div class="row">
+                <div class="col-lg-4 col-6">
+                  {{oing.name}}
+                </div>
+                <div class="col-lg-4 col-6">
+                  {{oing.unitPrice}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-lg-4 col-6">
+              Total Exc vat:
+            </div>
+            <div class="col-lg-4 col-6">
+              {{totalexc}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-6">
+              Service Charge(0):
+            </div>
+            <div class="col-lg-4 col-6">
+              {{service}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-6">
+              Vat(21%):
+            </div>
+            <div class="col-lg-4 col-6">
+              {{vat}}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-4 col-6">
+              Total:
+            </div>
+            <div class="col-lg-4 col-6">
+              {{total}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -32,7 +32,8 @@ import { DeleteIngredientComponent } from './admin/ingredient/delete/deleteIngre
 import { UserRouting } from './user/user.routing';
 import { AddOrderComponent } from './user/addOrder/addOrder.component';
 import { OrderHistoryComponent } from './user/orderHistory/orderHistory.component';
-import { UserModule } from './user/user.module';
+import { UserModule } from './user/user.module'; 
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { UserModule } from './user/user.module';
     LoginComponent,
     RegisterComponent,
     UserComponent,
-    AdminComponent
+    AdminComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -57,6 +59,7 @@ import { UserModule } from './user/user.module';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'order', component: OrderComponent },
       { path: 'user', component: UserComponent, canActivate: [AuthGuard],
         children: [
            { path: 'add-order', component: AddOrderComponent },
