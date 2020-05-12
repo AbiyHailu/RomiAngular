@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,7 @@ namespace RomiAngular.Controllers
 
         // GET: api/Gusts
         [HttpGet]
+        [Authorize(Policy = Policies.Admin)]
         public async Task<ActionResult<IEnumerable<Gust>>> GetGust()
         {
             return await _context.Gusts.ToListAsync();
@@ -30,6 +32,7 @@ namespace RomiAngular.Controllers
 
         // GET: api/Gusts/5
         [HttpGet("{id}")]
+        [Authorize(Policy = Policies.Admin)]
         public async Task<ActionResult<Gust>> GetGust(Guid id)
         {
             var gust = await _context.Gusts.FindAsync(id);
@@ -46,6 +49,7 @@ namespace RomiAngular.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
+        [Authorize(Policy = Policies.Admin)]
         public async Task<IActionResult> PutGust(Guid id, Gust gust)
         {
             if (id != gust.GustId)
@@ -77,7 +81,7 @@ namespace RomiAngular.Controllers
         // POST: api/Gusts
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
+        [HttpPost] 
         public async Task<ActionResult<Gust>> PostGust(Gust gust)
         {
             _context.Gusts.Add(gust);
@@ -88,6 +92,7 @@ namespace RomiAngular.Controllers
 
         // DELETE: api/Gusts/5
         [HttpDelete("{id}")]
+        [Authorize(Policy = Policies.Admin)]
         public async Task<ActionResult<Gust>> DeleteGust(Guid id)
         {
             var gust = await _context.Gusts.FindAsync(id);

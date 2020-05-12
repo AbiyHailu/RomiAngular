@@ -1,0 +1,8 @@
+body {
+}
+.burger {
+  float: left;
+  margin-right: 5px; 
+  width: 100%;
+  height: 100%;
+}

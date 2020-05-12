@@ -23,8 +23,7 @@ export class AddFoodComponent implements OnDestroy {
   ) {
     foodService.getFoods()
       .pipe(takeUntil(this.subject))
-      .subscribe(res => {
-        console.log('res', res);
+      .subscribe(res => { 
       })
   }
 

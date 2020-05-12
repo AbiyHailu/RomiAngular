@@ -12,7 +12,13 @@ html {
     font-size: 16px;
   }
 }
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+.navbar {
+  border-color: transparent !important;
 }
+.navbar-brand {
+  margin-bottom: 0px !important;
+  border-color:transparent
+}
+/*.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}*/

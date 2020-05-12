@@ -4,6 +4,9 @@
 a {
   color: #0366d6;
 }
+html, body {
+  height: 100%;
+}
 
 code {
   color: #e01a76;
@@ -13,4 +16,15 @@ code {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+.inputtest {
+  margin-top: -8px;
+  width: 100px;
+}
+
+.numinput {
+  padding: 15px;
+} 
+.navbar{
+    background-color:black; 
 }

@@ -1,9 +1,7 @@
 <header>
-  <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
-  >
+  <nav  class="navbar fixed-top navbar-expand-sm navbar-toggleable-sm  box-shadow mb-3 " >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">ሮሚ ሆቴል</a>
+      <a class="navbar-brand text-white" [routerLink]="['/']">ሮሚ ሆቴል</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -13,7 +11,7 @@
         [attr.aria-expanded]="isExpanded"
         (click)="toggle()"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"  ></span>
       </button>
       <div
         class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
@@ -23,27 +21,27 @@
           <li class="nav-item"
               [routerLinkActive]="['link-active']"
               [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            <a class="nav-link text-white" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" *ngIf="!userData.isLoggedIn" [routerLink]='["/login"]'>Login</a>
+            <a class="nav-link text-white" *ngIf="!userData.isLoggedIn" [routerLink]='["/login"]'>Login</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" *ngIf="!userData.isLoggedIn" [routerLink]='["/register"]'>Register</a>
+            <a class="nav-link text-white" *ngIf="!userData.isLoggedIn" [routerLink]='["/register"]'>Register</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.userRole==userRole.User" [routerLink]='["/user"]' [routerLink]=''>User</a>
+            <a class="nav-link text-white" *ngIf="userData.isLoggedIn && userData.userRole==userRole.User" [routerLink]='["/user"]' [routerLink]=''>User</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" *ngIf="userData.isLoggedIn && userData.userRole==userRole.Admin" [routerLink]='["/admin"]' [routerLink]=''>Manage</a>
+            <a class="nav-link text-white" *ngIf="userData.isLoggedIn && userData.userRole==userRole.Admin" [routerLink]='["/admin"]' [routerLink]=''>Manage</a>
           </li>
 
           <li class="nav-item" [routerLinkActive]='["link-active"]' *ngIf="userData.isLoggedIn">
-            <a class="nav-link text-dark">Welcome <b>{{userData.firstName}},</b> </a>
+            <a class="nav-link text-white">Welcome <b>{{userData.firstName}},</b> </a>
           </li>
 
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" *ngIf="userData.isLoggedIn" (click)=logout() [routerLink]=''>Logout</a>
+            <a class="nav-link text-white" *ngIf="userData.isLoggedIn" (click)=logout() [routerLink]=''>Logout</a>
           </li>
         </ul>
       </div>

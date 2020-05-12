@@ -20,7 +20,6 @@ export class OrderComponent implements OnInit, OnDestroy {
   subject: Subject<void> = new Subject
 
   constructor(
-   // private userService: UserService,
     private foodService: FoodService,
     private drinkService: DrinkService,
     private ingredientService: IngredientService,
@@ -187,9 +186,17 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.sharedDataService.changeOrder(this.orderToSubmit)
     this.router.navigate(['checkout-user']);
   }
-  checkoutOrder( ) {
+  checkoutOrder() {
+
+    let foodids = []
+    this.orderfood.forEach(e =>
+      foodids.push(e.FoodId.toString())
+    )
+
+
+
     this.orderToSubmit.PreferdDeliveryDate
-    this.orderToSubmit.foods = this.orderfood
+    this.orderToSubmit.foods = foodids
     this.orderToSubmit.drinks=this.orderdrink
     this.orderToSubmit.ingredients= this.orderingredient
     this.orderToSubmit.totalExcVat = this.totalexc

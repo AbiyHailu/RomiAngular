@@ -5,6 +5,67 @@
     <title></title>
 </head>
 <body>
-  test
+  <h4>Add gust details</h4>
+  <hr />
+  <div *ngIf="order" class="row">
+    <div class="col-md-4">
+      <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name"
+               formControlName="firstname">
+
+        <div *ngIf="formdata.controls['firstname'].invalid && (formdata.controls['firstname'].dirty || formdata.controls['firstname'].touched)" class="alert alert-danger">
+          <div *ngIf="formdata.controls['firstname'].errors.required">
+            First Name is required.
+          </div>
+        </div>
+        <br />
+
+        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name"
+               formControlName="lastname">
+
+        <div *ngIf="formdata.controls['lastname'].invalid && (formdata.controls['lastname'].dirty || formdata.controls['lastname'].touched)" class="alert alert-danger">
+          <div *ngIf="formdata.controls['lastname'].errors.required">
+            Last Name is required.
+          </div>
+        </div>
+        <br />
+
+        <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter Phone Number"
+               formControlName="phone">
+
+        <div *ngIf="formdata.controls['phone'].invalid && (formdata.controls['phone'].dirty || formdata.controls['phone'].touched)" class="alert alert-danger">
+          <div *ngIf="formdata.controls['phone'].errors.required">
+            Phone with proper format (09...)is required.
+          </div>
+        </div>
+        <br />
+
+        <div class="row numinput">
+          {{firstNumber}} + {{secondNumber}} =  &nbsp;<input type="text" class="form-control inputtest" #box (keyup)="onKey(box.value)" />
+        </div>
+        <div *ngIf="wronganswer != ''" class="alert-warning">
+          {{wronganswer}}
+        </div>
+
+        <br />
+        <input type="submit" [disabled]="!formdata.valid || !successOrder" class="btn btn-primary"
+               value="Submit">
+      </form>
+      <br />
+      <div style="color:green">
+        {{success}}
+      </div>
+      <br />
+    </div>
+  </div>
+  <div *ngIf="!order" class="row">
+    <h5>
+      No Orders added. Please , Go to orders o add orders.
+    </h5> 
+  </div>
+
+    <div>
+      <a (click)="navigateToOrder()">Back to Orders</a>
+    </div>
 </body>
 </html>

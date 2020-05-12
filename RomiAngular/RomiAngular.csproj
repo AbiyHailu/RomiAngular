@@ -48,6 +48,7 @@
     <None Remove="ClientApp\src\app\checkoutUser\checkoutUser.component.ts" />
     <None Remove="ClientApp\src\app\order\order.component.ts" />
     <None Remove="ClientApp\src\app\register\register.component.ts" />
+    <None Remove="ClientApp\src\app\services\gust.service.ts" />
     <None Remove="ClientApp\src\app\services\order.service.ts" />
     <None Remove="ClientApp\src\app\services\user.service.ts" />
     <None Remove="ClientApp\src\app\user\addOrder\addOrder.component.ts" />
@@ -79,6 +80,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\register\register.component.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\services\gust.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\order.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\user.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\user\addOrder\addOrder.component.ts" />
