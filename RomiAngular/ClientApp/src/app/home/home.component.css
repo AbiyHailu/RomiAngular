@@ -1,8 +1,162 @@
 body {
 }
-.burger {
-  float: left;
-  margin-right: 5px; 
-  width: 100%;
+.container-fluid {
+  background: black;
   height: 100%;
+  width:100%;
+} 
+.main-menu{
+    margin-top:80%; 
 }
+
+.logo {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 180px !important;
+  color: white;
+  margin-top: 10%;
+}
+.pic-row {
+}
+.img {
+  margin-top: 10%;
+  height: 80%;
+  position: absolute;
+  top:-10%;
+  right: 0
+}
+.fixed-row-bottom {
+  position: fixed;
+  bottom: 0;
+  height:40%
+}
+.food, .drink, .ing {
+  background-color: rgba(255,255,255, 0.5);
+  color: white;
+  padding: 6%;
+  margin-top: 1%; 
+}
+
+@media (max-width: 575.98px) {
+  .logo {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 50px !important;
+    color: white;
+    margin: auto;
+    margin-top: 20%
+  }
+  .img {
+    height: 80%;
+    position: absolute;
+    margin-top: 40%;
+    right: 0
+  } 
+  .fixed-row-bottom {
+    position: fixed;
+    bottom: 0;
+  }
+  .food, .drink, .ing {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 6%
+  }
+}
+ 
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .logo {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 60px !important;
+    color: white;
+    margin: auto;
+    margin-top: 20%
+  }
+  .pic-row {
+    height: auto
+  }
+  .img { 
+    height: 80%;
+    position: absolute;
+    top: 20%;
+    right: 0
+  }
+  .fixed-row-bottom {
+    position: fixed;
+    bottom: 0;
+  }
+  .food, .drink, .ing {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 6%
+  }
+
+}
+
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .logo {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 70px !important;
+    color: white;
+    margin: auto;
+    margin-top: 20%
+  }
+  .pic-row {
+    height: auto
+  }
+  .img {
+    height: 80%;
+    position: absolute;
+    top: 20%;
+    right: 0
+  }
+  .fixed-row-bottom {
+    position: fixed;
+    bottom: 0;
+  }
+  .food, .drink, .ing {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 6%
+  }
+}
+
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .logo {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 80px !important;
+    color: white;
+    margin-top: 20%
+  }
+  .img {
+    height: 80%;
+    position: absolute;
+    top: 20%;
+    right: 0
+  }
+  .fixed-row-bottom {
+    position: fixed;
+    bottom: 0;
+  }
+  .food, .drink, .ing {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 6%
+  }
+}
+
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 1400px) {
+  .img {
+    height: 70%;
+    position: absolute;
+    top: -10%;
+    right: 0
+  }
+  .fixed-row-bottom {
+    position: fixed;
+    bottom: 0;
+  }
+}
+

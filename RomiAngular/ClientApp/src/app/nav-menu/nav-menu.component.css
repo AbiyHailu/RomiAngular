@@ -14,10 +14,20 @@ html {
 }
 .navbar {
   border-color: transparent !important;
+  margin-bottom: 0 !important; 
+  width: 100%;
 }
 .navbar-brand {
   margin-bottom: 0px !important;
   border-color:transparent
+}
+.nav {
+  margin: auto;
+  height:6%;
+  padding: 1%;
+  overflow: hidden;
+  width: 100%;
+  background: black
 }
 /*.box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
