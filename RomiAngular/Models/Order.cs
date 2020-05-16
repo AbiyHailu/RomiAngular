@@ -13,9 +13,12 @@ namespace RomiAngular.Models
         //who ordered it 
         public DateTime OrderDate { get; set; } 
         public DateTime PreferdDeliveryDate { get; set; } 
-        public List<Food> Foods { get; set; }
-        public List<Drink> Drinks { get; set; }
-        public List<Ingredient> Ingredients { get; set; }
+        public int FoodId { get; set; }
+        public int DrinkId { get; set; }
+        public int IngredientId { get; set; }
+        public int UserId { get; set; }
+        public int GustId { get; set; }
+
 
         [Column(TypeName = "decimal(10,2)")] 
         public decimal TotalExcVat { get; set; }
@@ -29,6 +32,13 @@ namespace RomiAngular.Models
         public decimal TotalIncVat { get; set; }
         public bool deliverd { get; set; }
         public bool markasread { get; set; }
+
+
+        public virtual Food Food { get; set; }
+        public virtual Drink Drink { get; set; }
+        public virtual Ingredient Ingredient { get; set; }
+        public virtual Gust Gust { get; set; }
+
     }
 }
  

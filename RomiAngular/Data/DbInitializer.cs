@@ -84,24 +84,24 @@ namespace RomiWebApi.Data
             {
                 var orders = new Order[]  { 
                    new Order{ 
-                   Foods =   new List<Food>
-                   {
-                       context.Foods.Where(e=>e.Name =="Food1" ).FirstOrDefault(),
-                       context.Foods.Where(e=>e.Name =="Food3" ).FirstOrDefault(),
-                   },
-                   Drinks = new List<Drink>
-                   {
-                       context.Drinks.Where(e=>e.Name =="coca" ).FirstOrDefault(),
-                       context.Drinks.Where(e=>e.Name =="Bira" ).FirstOrDefault(),
-                   },
-                   Ingredients = new List<Ingredient>()
-                   {
-                       context.Ingredients.Where(e=>e.Name =="Berbere" ).FirstOrDefault(),
-                       context.Ingredients.Where(e=>e.Name =="Genfo" ).FirstOrDefault(),
-                   },
+                   //Foods =   new List<Food>
+                   //{
+                   //    context.Foods.Where(e=>e.Name =="Food1" ).FirstOrDefault(),
+                   //    context.Foods.Where(e=>e.Name =="Food3" ).FirstOrDefault(),
+                   //},
+                   //Drinks = new List<Drink>
+                   //{
+                   //    context.Drinks.Where(e=>e.Name =="coca" ).FirstOrDefault(),
+                   //    context.Drinks.Where(e=>e.Name =="Bira" ).FirstOrDefault(),
+                   //},
+                   //Ingredients = new List<Ingredient>()
+                   //{
+                   //    context.Ingredients.Where(e=>e.Name =="Berbere" ).FirstOrDefault(),
+                   //    context.Ingredients.Where(e=>e.Name =="Genfo" ).FirstOrDefault(),
+                   //},
 
-                   OrderDate =  DateTime.Now,
-                   PreferdDeliveryDate =  DateTime.Now
+                   //OrderDate =  DateTime.Now,
+                   //PreferdDeliveryDate =  DateTime.Now
                },
             };
 

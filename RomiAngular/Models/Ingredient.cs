@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RomiAngular.Models
@@ -12,5 +13,6 @@ namespace RomiAngular.Models
         [Column(TypeName = "decimal(10,2)")]
         public decimal UnitPrice { get; set; }
         public string Description { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }
