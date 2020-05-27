@@ -10,35 +10,27 @@ namespace RomiAngular.Models
         [Key, Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderID { get; set; } 
-        //who ordered it 
         public DateTime OrderDate { get; set; } 
         public DateTime PreferdDeliveryDate { get; set; } 
-        public int FoodId { get; set; }
-        public int DrinkId { get; set; }
-        public int IngredientId { get; set; }
-        public int UserId { get; set; }
-        public int GustId { get; set; }
-
+        public Guid UserId { get; set; }
+        public int GustId { get; set; } 
 
         [Column(TypeName = "decimal(10,2)")] 
         public decimal TotalExcVat { get; set; }
 
         [Column(TypeName = "decimal(10,2)")]
-        public decimal  servicecharge { get; set; }
+        public decimal  Servicecharge { get; set; }
 
         [Column(TypeName = "decimal(10,2)")]
-        public decimal vat { get; set; }
+        public decimal Vat { get; set; }
         [Column(TypeName = "decimal(10,2)")]
         public decimal TotalIncVat { get; set; }
-        public bool deliverd { get; set; }
-        public bool markasread { get; set; }
+        public bool Deliverd { get; set; }
+        public bool Markasread { get; set; }
 
-
-        public virtual Food Food { get; set; }
-        public virtual Drink Drink { get; set; }
-        public virtual Ingredient Ingredient { get; set; }
+        public virtual User User { get; set; } 
         public virtual Gust Gust { get; set; }
-
+        public ICollection<Menu> Menus { get; set; }
     }
 }
  

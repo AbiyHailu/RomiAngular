@@ -1,11 +1,9 @@
 import { Component, OnInit, OnDestroy } from "@angular/core"; 
 import { Router } from "@angular/router"; 
 import { Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators"; 
-import { Ingredient, IngredientService } from "../services/ingredient.service ";
-import { Drink, DrinkService } from "../services/drink.service ";
-import { Food, FoodService } from "../services/food.service";
+import { takeUntil } from "rxjs/operators";  
 import { SharedDataService } from "../services/sharedDataService";
+import { MenuService, Menu } from "../services/menu.service ";
 
 @Component({
   selector: 'app-order',
@@ -14,35 +12,19 @@ import { SharedDataService } from "../services/sharedDataService";
 })
 export class OrderComponent implements OnInit, OnDestroy {
   adminData: string;
-  foods: Food;
-  drinks: Drink;
-  ingredients: Ingredient; 
+  menus: Menu; 
   subject: Subject<void> = new Subject
 
   constructor(
-    private foodService: FoodService,
-    private drinkService: DrinkService,
-    private ingredientService: IngredientService,
+    private menuService: MenuService, 
     private router: Router,
     private sharedDataService: SharedDataService 
   ) {
 
-    this.foodService.getFoods()
+    this.menuService.getMenus()
       .pipe(takeUntil(this.subject))
       .subscribe(res => {
-        this.foods = res;
-      })
-
-    this.drinkService.getDrinks()
-      .pipe(takeUntil(this.subject))
-      .subscribe(res => {
-        this.drinks = res;
-      })
-
-    this.ingredientService.getIngredients()
-      .pipe(takeUntil(this.subject))
-      .subscribe(res => {
-        this.ingredients = res;
+        this.menus = res;
       }) 
   }
   ngOnInit() {

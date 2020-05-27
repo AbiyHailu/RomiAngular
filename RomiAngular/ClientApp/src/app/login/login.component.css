@@ -1,0 +1,58 @@
+body {
+}
+.container-fluid {
+  background: black;
+  height: 100%;
+  width: 100%;
+} 
+.login{
+    top:20%
+}
+.card {
+  background-color: rgba(0, 0, 0, 0.5);
+  color:white
+}
+.card-header {
+  background-color: rgba(0, 0, 0, 0.5); 
+}
+.btn-primary{
+    float:right;
+    background-color:white;
+    color:black !important;
+    width:100px
+}
+.pic-row {
+  background-image: url(/assets/burger.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+@media (max-width: 575.98px) {
+   
+  .pic-row {
+    background-image: url(/assets/burger.png);
+    background-repeat: no-repeat;
+    background-size: 300%;
+    background-position: -200px
+  }
+   
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) { 
+
+  .pic-row {
+    height: auto
+  }  
+} 
+@media (min-width: 768px) and (max-width: 991.98px) { 
+  .pic-row {
+    height: auto
+  } 
+} 
+
+@media (min-width: 992px) and (max-width: 1199.98px) {  
+}
+
+@media (min-width: 1200px) {
+} 
+

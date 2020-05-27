@@ -77,11 +77,17 @@ namespace RomiWeb.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Order>> PostOrder(Order order)
+        public async Task<ActionResult<Order>> PostOrder(Order order  )
         {  
             order.OrderDate = DateTime.Now;
-            order.deliverd = false;
-            order.markasread = false;
+            order.Deliverd = false;
+            order.Markasread = false;
+
+           
+          //  new way  make menu .. and enum save an enum 
+          //when save  do it on the enume 
+
+
             _context.Orders.Add(order);
             await _context.SaveChangesAsync(); 
             return CreatedAtAction("GetOrder", new { id = order.OrderID }, order);

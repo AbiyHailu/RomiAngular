@@ -16,24 +16,24 @@ body {
   margin-top: 10%;
 }
 .pic-row {
-}
-.img {
-  margin-top: 10%;
-  height: 80%;
-  position: absolute;
-  top:-10%;
-  right: 0
+  background-image: url(/assets/ketfo.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%; 
 }
 .fixed-row-bottom {
+  height: 40%; 
   position: fixed;
-  bottom: 0;
-  height:40%
+  bottom: 6%; 
 }
 .food, .drink, .ing {
-  background-color: rgba(255,255,255, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white; 
+  padding:8%;
+  cursor:pointer
+}
+.bottom-message {
   color: white;
-  padding: 6%;
-  margin-top: 1%; 
+  font-size: 50px !important;
 }
 
 @media (max-width: 575.98px) {
@@ -42,22 +42,30 @@ body {
     font-size: 50px !important;
     color: white;
     margin: auto;
-    margin-top: 20%
+    margin-top: 40%
   }
-  .img {
-    height: 80%;
-    position: absolute;
-    margin-top: 40%;
-    right: 0
-  } 
+  .pic-row {
+    background-image: url(/assets/ketfo.jpg);
+    background-repeat: no-repeat;
+    background-size: 300%;
+    background-position:-100px
+  }
+  .bottom-message {
+    color: white;
+    font-size: 30px !important;
+    padding-top: 6%
+  }
   .fixed-row-bottom {
+    height: 40%;
     position: fixed;
-    bottom: 0;
-  }
+    bottom: 16%;
+  } 
   .food, .drink, .ing {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    padding: 6%
+    padding: 6%;
+    margin-top:2%;
+    width:100% !important
   }
 }
  
@@ -71,17 +79,11 @@ body {
   }
   .pic-row {
     height: auto
-  }
-  .img { 
-    height: 80%;
-    position: absolute;
-    top: 20%;
-    right: 0
-  }
-  .fixed-row-bottom {
+  } 
+  /*.fixed-row-bottom {
     position: fixed;
     bottom: 0;
-  }
+  }*/
   .food, .drink, .ing {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
@@ -102,16 +104,11 @@ body {
   .pic-row {
     height: auto
   }
-  .img {
-    height: 80%;
-    position: absolute;
-    top: 20%;
-    right: 0
-  }
-  .fixed-row-bottom {
+  
+  /*.fixed-row-bottom {
     position: fixed;
     bottom: 0;
-  }
+  }*/
   .food, .drink, .ing {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
@@ -126,13 +123,7 @@ body {
     font-size: 80px !important;
     color: white;
     margin-top: 20%
-  }
-  .img {
-    height: 80%;
-    position: absolute;
-    top: 20%;
-    right: 0
-  }
+  } 
   .fixed-row-bottom {
     position: fixed;
     bottom: 0;
@@ -147,16 +138,11 @@ body {
 @media (min-width: 1200px) {
 
 }
-@media (min-width: 1400px) {
-  .img {
-    height: 70%;
-    position: absolute;
-    top: -10%;
-    right: 0
-  }
+/*@media (min-width: 1400px) {
+  
   .fixed-row-bottom {
     position: fixed;
-    bottom: 0;
+    bottom: 10%;
   }
-}
+}*/
 

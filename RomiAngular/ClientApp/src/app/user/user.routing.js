@@ -2,5 +2,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var router_1 = require("@angular/router");
 exports.routes = [];
-exports.AdminRouting = router_1.RouterModule.forChild(exports.routes);
-//# sourceMappingURL=admin.routing.js.map
+exports.UserRouting = router_1.RouterModule.forChild(exports.routes);
+//# sourceMappingURL=user.routing.js.map

@@ -2,10 +2,8 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Router } from "@angular/router"; 
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
-import { UserService } from "../../services/user.service";
-import { FoodService, Food } from "../../services/food.service";
-import { DrinkService, Drink } from "../../services/drink.service ";
-import { IngredientService, Ingredient } from "../../services/ingredient.service ";
+import { UserService } from "../../services/user.service"; 
+import { MenuService } from "../../services/menu.service ";
 
 @Component({
   selector: 'app-addOrder',
@@ -13,36 +11,24 @@ import { IngredientService, Ingredient } from "../../services/ingredient.service
 })
 export class AddOrderComponent implements OnInit, OnDestroy {
   adminData: string;
-  foods: Food;
-  drinks: Drink;
-  ingredients: Ingredient; 
+  foods:any;
+  drinks: any;
+  ingredients: any; 
   subject: Subject<void> = new Subject
 
   constructor(
    // private userService: UserService,
-    private foodService: FoodService,
-    private drinkService: DrinkService,
-    private ingredientService: IngredientService,
+    private  menuService: MenuService, 
     private router: Router
   ) {
 
-    this.foodService.getFoods()
+    this.menuService.getMenus()
       .pipe(takeUntil(this.subject))
       .subscribe(res => {
+        //filter for all
         this.foods = res;
-      })
-
-    this.drinkService.getDrinks()
-      .pipe(takeUntil(this.subject))
-      .subscribe(res => {
-        this.drinks = res;
-      })
-
-    this.ingredientService.getIngredients()
-      .pipe(takeUntil(this.subject))
-      .subscribe(res => {
-        this.ingredients = res;
       }) 
+    
   }
   ngOnInit() {
   }

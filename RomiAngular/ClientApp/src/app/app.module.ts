@@ -16,19 +16,7 @@ import { HttpInterceptorService } from './auth/httpInterceptor.service';
 import { ErrorInterceptorService } from './auth/error-interceptor.service';
 import { RegisterComponent } from './register/register.component';  
 import { AdminRouting } from './admin/admin.routing';
-import { AdminModule } from './admin/admin.module';
-import { AddFoodComponent } from './admin/food/add/addFood.component';
-import { ListFoodComponent } from './admin/food/list/listFood..component';
-import { DeleteFoodComponent } from './admin/food/delete/deleteFood.component';
-import { EditFoodComponent } from './admin/food/edit/editFood.component';
-import { AddDrinkComponent } from './admin/drink/add/addDrinkcomponent';
-import { ListDrinkComponent } from './admin/drink/list/listDrink..component';
-import { EditDrinkComponent } from './admin/drink/edit/editDrink.component';
-import { DeleteDrinkComponent } from './admin/drink/delete/deleteDrink.component';
-import { AddIngredientComponent } from './admin/ingredient/add/addIngredient.component';
-import { ListIngredientComponent } from './admin/ingredient/list/listIngredient..component';
-import { EditIngredientComponent } from './admin/ingredient/edit/editIngredient.component';
-import { DeleteIngredientComponent } from './admin/ingredient/delete/deleteIngredient.component'; 
+import { AdminModule } from './admin/admin.module'; 
 import { UserRouting } from './user/user.routing';
 import { AddOrderComponent } from './user/addOrder/addOrder.component';
 import { OrderHistoryComponent } from './user/orderHistory/orderHistory.component';
@@ -36,6 +24,10 @@ import { UserModule } from './user/user.module';
 import { OrderComponent } from './order/order.component'; 
 import { CheckoutGustComponent } from './checkoutGust/checkoutGust.component';
 import { CheckoutUserComponent } from './checkoutUser/checkoutUser.component';
+import { DeleteMenuComponent } from './admin/menu/delete/deleteMenu.component';
+import { EditMenuComponent } from './admin/menu/edit/editMenu.component';
+import { ListMenuComponent } from './admin/menu/list/listMenu.component';
+import { AddMenuComponent } from './admin/menu/add/addMenu.component';
 
 @NgModule({
   declarations: [
@@ -72,22 +64,13 @@ import { CheckoutUserComponent } from './checkoutUser/checkoutUser.component';
            { path: 'order-history', component: OrderHistoryComponent, canActivate: [AuthGuard] }
         ]
       },
+      { path: 'menu-list', component: ListMenuComponent, canActivate: [AdminGuard] },
       { path: 'admin', component: AdminComponent, canActivate: [AdminGuard], 
         children: [
-          { path: 'add-food', component: AddFoodComponent, canActivate: [AdminGuard] },
-          { path: 'food-list', component: ListFoodComponent, canActivate: [AdminGuard] }, 
-          { path: 'edit-food/:id', component: EditFoodComponent, canActivate: [AdminGuard] },
-          { path: 'delete-food', component: DeleteFoodComponent, canActivate: [AdminGuard] },
-
-          { path: 'add-drink', component: AddDrinkComponent, canActivate: [AdminGuard] },
-          { path: 'drink-list', component: ListDrinkComponent, canActivate: [AdminGuard] },
-          { path: 'edit-drink/:id', component: EditDrinkComponent, canActivate: [AdminGuard] },
-          { path: 'delete-drink', component: DeleteDrinkComponent, canActivate: [AdminGuard] },
-
-          { path: 'add-ingredient', component: AddIngredientComponent, canActivate: [AdminGuard] },
-          { path: 'ingredient-list', component: ListIngredientComponent, canActivate: [AdminGuard]  },
-          { path: 'edit-ingredient/:id', component: EditIngredientComponent, canActivate: [AdminGuard] },
-          { path: 'delete-ingredient', component: DeleteIngredientComponent, canActivate: [AdminGuard] },
+          { path: 'add-menu', component: AddMenuComponent, canActivate: [AdminGuard] },
+          { path: 'menu-list', component: ListMenuComponent, canActivate: [AdminGuard] }, 
+          { path: 'edit-menu/:id', component: EditMenuComponent, canActivate: [AdminGuard] },
+          { path: 'delete-menu', component: DeleteMenuComponent, canActivate: [AdminGuard] }, 
         ]
       }, 
     ])

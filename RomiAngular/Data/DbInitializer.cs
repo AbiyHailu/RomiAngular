@@ -1,7 +1,5 @@
 ﻿using RomiAngular.Data;
-using RomiAngular.Models; 
-using System;
-using System.Collections.Generic;
+using RomiAngular.Models;  
 using System.Linq;
 
 namespace RomiWebApi.Data
@@ -26,95 +24,80 @@ namespace RomiWebApi.Data
                 }
                 context.SaveChanges();
             }
+ 
 
-            if (!context.Foods.Any())
+            if (!context.Menus.Any())
             {
-                var foods = new Food[] 
+                var menus = new Menu[]
                 {
-                    new Food{  Name="Food1", UnitPrice=10.7m},
-                    new Food{  Name="Food2", UnitPrice=20.2m},
-                    new Food{  Name="Food3", UnitPrice=30.3m},
-                    new Food{ Name="Food4", UnitPrice=40.5m},
-                    new Food{ Name="Food5", UnitPrice=50.0m}  
+                    new Menu{ MenuType = MenuEnum.Food,  Name="የፆም አገልግል", UnitPrice=100.0m, Description="1.5 እንጀራ፣ ቀይ ምስር፣ አልጫ ክክ፣ጐመን፣ጥቅል ጐመን፣ስንግ...."},
+                    new Menu{ MenuType = MenuEnum.Food,   Name="የበግ ወጥ አገልግል", UnitPrice=100.0m, Description="1.5 እንጀራ፣ አልጫ ፍትፍት፣ቀይ ፍትፍት፣1አጥንት"},
+                    new Menu{ MenuType = MenuEnum.Food,  Name="የበሬ ወጥ አገልግል", UnitPrice=100.0m, Description="1.5 እንጀራ፣ አልጫ ፍትፍት፣ቀይ ፍትፍት፣1አጥንት"},
+                    new Menu{ MenuType = MenuEnum.Food,  Name="ኖርማል በርገር", UnitPrice=100.0m, Description="100ግራም ተፈጭቶ የተቀመመ ስጋ፣150ግራም ዳቦ፣ቲማቲም፣ሰላጣ"},
+                    new Menu{ MenuType = MenuEnum.Food,  Name="ስፔሻል ቺዝ በርገር", UnitPrice=100.0m, Description="100ግራም 100ግራም ተፈጭቶ የተቀመመ ስጋ፣150ግራም ዳቦ፣ቺዝ፣እንቁላል፣ቲማቲም፣ሰላጣ"},
+                    new Menu{ MenuType = MenuEnum.Food,  Name="ስፔሻል ቢፍ በርገር", UnitPrice=100.0m, Description="100ግራም ተፈጭቶ የተቀመመ ስጋ፣150ግራም ዳቦ፣ቢፍ፣እንቁላል፣ቲማቲም፣ሰላጣ"},
+                    new Menu{ MenuType = MenuEnum.Food,  Name="እንቁላል ሳንድዊች", UnitPrice=100.0m, Description="2 እንቁላል፣ቀይ ሽንኩርት፣ቅቤ፣150ግራም ዳቦ፣ቅመም"},
+                    new Menu{ MenuType = MenuEnum.Food,  Name="ስጋ ሳንድዊች", UnitPrice=100.0m, Description="የተፈጨ የበሬ ስጋ፣ቀይ ሽንኩርት፣ቅቤ፣ ነጭ ሽንኩርት፣150ግራም ዳቦ፣ቅመም"},
+                    new Menu{ MenuType = MenuEnum.Food,  Name="አትክልት ሳንድዊች", UnitPrice=100.0m, Description="ድንች፣ካሮት፣ሰላጣ፣ቀይ ሽንኩርት፣ነጭ ሽንኩርት፣ቅቤ፣ጨዉ፣150ግራም ዳቦ፣ቅመም"},
+
+                    new Menu{ MenuType = MenuEnum.Drink,  Name="Coca", UnitPrice=12.7m, Description="test"},
+                    new Menu{ MenuType = MenuEnum.Drink,  Name="Bira", UnitPrice=20.2m, Description="test"},
+                    new Menu{ MenuType = MenuEnum.Drink,  Name="Tea", UnitPrice=8.3m, Description = "test" },
+                    new Menu{ MenuType = MenuEnum.Drink,  Name="Coffee", UnitPrice=40.5m, Description = "test" },
+                    new Menu{ MenuType = MenuEnum.Drink,  Name="Juis", UnitPrice=12.7m, Description="test"},
+
+                    new Menu{ MenuType = MenuEnum.Ingredient, Name="Berbere", UnitPrice=11.7m, Description="test"},
+                    new Menu{ MenuType = MenuEnum.Ingredient, Name="Shoro", UnitPrice=22.2m, Description="test"},
+                    new Menu{ MenuType = MenuEnum.Ingredient, Name="Atmit", UnitPrice=13.3m, Description="test" },
+                    new Menu{ MenuType = MenuEnum.Ingredient, Name="Genfo", UnitPrice=10.5m, Description="test"}  
                 };
 
-                foreach (Food f in foods)
+                foreach (Menu f in menus)
                 {
-                    context.Foods.Add(f);
-                }
-                context.SaveChanges();
-            }
-           
-            if (!context.Drinks.Any()){  
-                var drinks = new Drink[]
-                {
-                      new Drink{ Name="coca", UnitPrice=12.7m},
-                      new Drink {Name="Bira", UnitPrice=20.2m},
-                      new Drink{ Name="Tea", UnitPrice=8.3m},
-                      new Drink{ Name="Coffee", UnitPrice=40.5m},
-                      new Drink{ Name="Juice", UnitPrice=50.0m}
-                };
-                foreach (Drink c in drinks)
-                {
-                    context.Drinks.Add(c);
-                }
-                context.SaveChanges();
-            }
-
-            if (!context.Ingredients.Any())
-            {
-                var ingredients = new Ingredient[] 
-                {
-                    new Ingredient{ Name="Berbere", UnitPrice=11.7m},
-                    new Ingredient{ Name="Shoro", UnitPrice=22.2m},
-                    new Ingredient{ Name="Atmit", UnitPrice=13.3m},
-                    new Ingredient{ Name="Genfo", UnitPrice=10.5m}
-                };
-
-                foreach (Ingredient c in ingredients)
-                {
-                    context.Ingredients.Add(c);
+                    context.Menus.Add(f);
                 }
                 context.SaveChanges();
             }
 
+ 
 
-            //if (context.Orders.Where(e => e.OrderID != 3).Any())
-            if (!context.Orders.Any())
-            {
-                var orders = new Order[]  { 
-                   new Order{ 
-                   //Foods =   new List<Food>
-                   //{
-                   //    context.Foods.Where(e=>e.Name =="Food1" ).FirstOrDefault(),
-                   //    context.Foods.Where(e=>e.Name =="Food3" ).FirstOrDefault(),
-                   //},
-                   //Drinks = new List<Drink>
-                   //{
-                   //    context.Drinks.Where(e=>e.Name =="coca" ).FirstOrDefault(),
-                   //    context.Drinks.Where(e=>e.Name =="Bira" ).FirstOrDefault(),
-                   //},
-                   //Ingredients = new List<Ingredient>()
-                   //{
-                   //    context.Ingredients.Where(e=>e.Name =="Berbere" ).FirstOrDefault(),
-                   //    context.Ingredients.Where(e=>e.Name =="Genfo" ).FirstOrDefault(),
-                   //},
 
-                   //OrderDate =  DateTime.Now,
-                   //PreferdDeliveryDate =  DateTime.Now
-               },
-            };
+            ////if (context.Orders.Where(e => e.OrderID != 3).Any())
+            //if (!context.Orders.Any())
+            //{
+            //    var orders = new Order[]  { 
+            //       new Order{ 
+            //       //Foods =   new List<Food>
+            //       //{
+            //       //    context.Foods.Where(e=>e.Name =="Food1" ).FirstOrDefault(),
+            //       //    context.Foods.Where(e=>e.Name =="Food3" ).FirstOrDefault(),
+            //       //},
+            //       //Drinks = new List<Drink>
+            //       //{
+            //       //    context.Drinks.Where(e=>e.Name =="coca" ).FirstOrDefault(),
+            //       //    context.Drinks.Where(e=>e.Name =="Bira" ).FirstOrDefault(),
+            //       //},
+            //       //Ingredients = new List<Ingredient>()
+            //       //{
+            //       //    context.Ingredients.Where(e=>e.Name =="Berbere" ).FirstOrDefault(),
+            //       //    context.Ingredients.Where(e=>e.Name =="Genfo" ).FirstOrDefault(),
+            //       //},
 
-            foreach (Order e in orders)
-            {
-                context.Orders.Add(e);
-            }
-            context.SaveChanges();
-                return;   // DB has been seeded
-            }
-            else {
-                return;
-            } 
+            //       //OrderDate =  DateTime.Now,
+            //       //PreferdDeliveryDate =  DateTime.Now
+            //   },
+            //};
+
+            //foreach (Order e in orders)
+            //{
+            //    context.Orders.Add(e);
+            //}
+            //context.SaveChanges();
+            //    return;   // DB has been seeded
+            //}
+            //else {
+            //    return;
+            //} 
         }
     }
 }

@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using RomiAngular.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RomiAngular.Data
 {
@@ -11,13 +9,29 @@ namespace RomiAngular.Data
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Food> Foods { get; set; }
-        public DbSet<Drink> Drinks { get; set; }
-        public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<Menu> Menus { get; set; } 
         public DbSet<Gust> Gusts { get; set; }
         public RomiContext(DbContextOptions options): base(options)
         {
 
-        } 
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {  
+
+            modelBuilder.Entity<Order>()
+                .ToTable("Orders")
+                 .HasMany(s => s.Menus);
+                 
+            modelBuilder.Entity<Menu>()
+                .ToTable("Menus")
+                .HasMany(s => s.Orders);
+
+            modelBuilder.Entity<User>()
+                .ToTable("Users");
+            
+            modelBuilder.Entity<Gust>()
+                .ToTable("Gusts");
+        }
+
     }
 }
