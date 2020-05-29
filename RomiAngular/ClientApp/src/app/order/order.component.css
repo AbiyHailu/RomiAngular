@@ -3,3 +3,15 @@ body {
 .btn-checkout {
   width: 100% !important
 }
+.checkbox_lebel_name {
+  font-size: 14px;
+  font-weight:bold
+}
+.checkbox_lebel_price { 
+  font-size: 12px;
+  font-weight:normal
+}
+.checkbox_lebel_des { 
+  font-size: 11px;
+  font-style: italic
+}

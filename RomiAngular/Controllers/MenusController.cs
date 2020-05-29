@@ -1,23 +1,26 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using RomiAngular.Data;
-using RomiAngular.Models; 
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using RomiAngular.Data;
+using RomiAngular.Models;
 
 namespace RomiAngular.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MenuController : ControllerBase
+    public class MenusController : ControllerBase
     {
         private readonly RomiContext _context;
-        public MenuController(RomiContext context)
+
+        public MenusController(RomiContext context)
         {
             _context = context;
         }
+
         // GET: api/Menus
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Menu>>> GetMenus()
@@ -40,10 +43,9 @@ namespace RomiAngular.Controllers
         }
 
         // PUT: api/Menus/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        [Authorize(Policy = Policies.Admin)]
         public async Task<IActionResult> PutMenu(int id, Menu menu)
         {
             if (id != menu.MenuID)
@@ -73,11 +75,9 @@ namespace RomiAngular.Controllers
         }
 
         // POST: api/Menus
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-
-        [Authorize(Policy = Policies.Admin)]
         public async Task<ActionResult<Menu>> PostMenu(Menu menu)
         {
             _context.Menus.Add(menu);
@@ -88,7 +88,6 @@ namespace RomiAngular.Controllers
 
         // DELETE: api/Menus/5
         [HttpDelete("{id}")]
-        [Authorize(Policy = Policies.Admin)]
         public async Task<ActionResult<Menu>> DeleteMenu(int id)
         {
             var menu = await _context.Menus.FindAsync(id);

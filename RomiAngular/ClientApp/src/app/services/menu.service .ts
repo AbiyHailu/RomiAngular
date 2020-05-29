@@ -8,7 +8,7 @@ export class MenuService {
     private http: HttpClient 
   ) {  }
     
-  getMenus(): Observable<Menu> { 
+  getMenus(): Observable<Menu[]> { 
     return <Observable<any>>this.http.get("/api/menus");
   }
   getMenuById(id:any): Observable<Menu> {
@@ -26,9 +26,14 @@ export class MenuService {
 
 export interface Menu {
   MenuID: any;
-  MenuType: string;
+  MenuType: MenuType;
   Name: string;
   UnitPrice: number;
   Description: string;
 }
 
+export enum MenuType {
+  food,
+  drink,
+  ingredient
+}

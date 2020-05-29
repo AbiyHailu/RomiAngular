@@ -12,7 +12,10 @@ import { MenuService, Menu } from "../services/menu.service ";
 })
 export class OrderComponent implements OnInit, OnDestroy {
   adminData: string;
-  menus: Menu; 
+  menus: any;
+  foods:any[]
+  drinks: any[]
+  ingredients:any[]
   subject: Subject<void> = new Subject
 
   constructor(
@@ -20,11 +23,22 @@ export class OrderComponent implements OnInit, OnDestroy {
     private router: Router,
     private sharedDataService: SharedDataService 
   ) {
-
+    this.menus =[]
+    this.foods=[]
+    this.drinks=[]
+    this.ingredients=[]
     this.menuService.getMenus()
       .pipe(takeUntil(this.subject))
       .subscribe(res => {
-        this.menus = res;
+        this.menus=res;
+        console.log("mmmnu", this.menus, res)
+        this.foods = res.filter(f => f["menuType"] == 0)
+        this.drinks = this.menus.filter(d => d["menuType"] == 1)
+        this.ingredients = this.menus.filter(i => i["menuType"] ==2)
+        console.log("foods", this.foods)
+        console.log("drinks", this.drinks)
+        console.log("ingredients", this.ingredients)
+        console.log("mmmnu", this.menus)
       }) 
   }
   ngOnInit() {
