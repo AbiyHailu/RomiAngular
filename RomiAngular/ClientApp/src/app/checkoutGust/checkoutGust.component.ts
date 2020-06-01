@@ -14,6 +14,7 @@ import { OrderService } from '../services/order.service';
 export class CheckoutGustComponent implements OnDestroy {
   gust: any
   order: any
+  menu: any
   subject: Subject<void> = new Subject();
   successOrder =true
 
@@ -29,12 +30,13 @@ export class CheckoutGustComponent implements OnDestroy {
     this.sharedDataService._currentOrder
       .pipe(takeUntil(this.subject))
       .subscribe(res => {
-        this.order = res
+        console.log("res", res)
+        this.order = res.order
+        this.menu = res.menu
       })
 
     this.firstNumber = Math.floor(Math.random() * 10) + 1;
-    this.secondNumber = Math.floor(Math.random() * 10) + 1;
-
+    this.secondNumber = Math.floor(Math.random() * 10) + 1; 
   }
   formdata;
   ngOnInit() {
@@ -57,36 +59,40 @@ export class CheckoutGustComponent implements OnDestroy {
     }
   }
   success: string
+  fail:string
   onClickSubmit(data) {
-  
+    console.log("data", data)
+    data.phone = data.phone.toString();
     if (this.formdata.invalid || !this.result) {
       this.onKey(null)
       return;
     }
 
-
-    this.orderService.addOrders(this.order).pipe(takeUntil(this.subject))
+    this.gustService.addGusts(data)
       .pipe(takeUntil(this.subject))
       .subscribe(res => {
+        console.log("res", res)
         if (res) {
-          data.orderID = res.OrderId
-          this.gustService.addGusts(data)
+          this.order.gust = res.GustID
+          this.orderService.addOrders(this.order, this.menu).pipe(takeUntil(this.subject))
             .pipe(takeUntil(this.subject))
             .subscribe(res => {
-              this.successOrder =false
+              this.successOrder = false
               this.success = "Order Successfuly added! We will contact you Very soon. keep your phone with you.";
+              this.fail = ''
             },
               error => {
                 this.successOrder = false
-                this.success = "Something went wrong. Please, try again later!";
-                console.log("error",error)
+                this.fail = "Something went wrong. Please, try again later!";
+                this.success  =''
+                console.log("error", error)
               },
               () => {
                 // 'onCompleted' callback.
                 // No errors, route to new page here
               })
-        }
-      })
+        }  
+      })  
   }
   navigateToOrder() {
     this.router.navigate(["./order"])

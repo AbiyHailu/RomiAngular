@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class SharedDataService {
-
+export class SharedDataService { 
   private _menusource = new BehaviorSubject<any>('');
   _currentMenu = this._menusource.asObservable();
   changeMenu(menu: string) {
@@ -12,7 +11,7 @@ export class SharedDataService {
 
   private _ordersource = new BehaviorSubject<any>('');
   _currentOrder = this._ordersource.asObservable();
-  changeOrder(order: any) {
-    this._ordersource.next(order)
+  changeOrder(order: any, menu:any) {
+    this._ordersource.next(order, menu)
   } 
 }

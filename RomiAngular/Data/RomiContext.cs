@@ -1,7 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using RomiAngular.Models;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore; 
+using RomiAngular.Models; 
 
 namespace RomiAngular.Data
 {
@@ -16,15 +14,14 @@ namespace RomiAngular.Data
 
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {  
-
+        {
             modelBuilder.Entity<Order>()
                 .ToTable("Orders")
-                 .HasMany(s => s.Menus);
-                 
+                 .HasMany(s => s.Menus); 
+
             modelBuilder.Entity<Menu>()
-                .ToTable("Menus")
-                .HasMany(s => s.Orders);
+                .ToTable("Menus");
+               // .HasMany(s => s.Orders);
 
             modelBuilder.Entity<User>()
                 .ToTable("Users");

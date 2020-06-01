@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, EmailValidator } from '@angular/for
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators'; 
 import { AuthService } from '../auth/auth.service';
+import { SharedDataService } from '../services/sharedDataService';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService) { 
+    private authService: AuthService 
+  ) { 
   }
   ngOnInit() {
     this.loginForm = this.formBuilder.group({

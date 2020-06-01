@@ -4,6 +4,7 @@ import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";  
 import { SharedDataService } from "../services/sharedDataService";
 import { MenuService, Menu } from "../services/menu.service ";
+import { AuthService } from "../auth/auth.service";
 
 @Component({
   selector: 'app-order',
@@ -15,13 +16,15 @@ export class OrderComponent implements OnInit, OnDestroy {
   menus: any;
   foods:any[]
   drinks: any[]
-  ingredients:any[]
+  ingredients: any[]
+  user:any
   subject: Subject<void> = new Subject
 
   constructor(
     private menuService: MenuService, 
     private router: Router,
-    private sharedDataService: SharedDataService 
+    private sharedDataService: SharedDataService,
+    private authService: AuthService
   ) {
     this.menus =[]
     this.foods=[]
@@ -41,46 +44,24 @@ export class OrderComponent implements OnInit, OnDestroy {
         console.log("mmmnu", this.menus)
       }) 
   }
+
   ngOnInit() {
+
   }
 
-  orderfood = [] 
-  orderdrink = [] 
-  orderingredient = []
-  checkCheckBoxvalue(checked, item, type) { 
+  orderMenu=[]
+  //orderfood = [] 
+  //orderdrink = [] 
+  //orderingredient = []
+  checkCheckBoxvalue(checked, item ) {
+    console.log()
     if (checked) {
-      if (type == 'food') {
-        this.orderfood.push(item)
-        console.log('added', this.orderfood)
-      }
-      if (type == 'drink') {
-        this.orderdrink.push(item)
-        console.log('added', this.orderdrink)
-      }
-      if (type == 'ing') {
-        this.orderingredient.push(item)
-        console.log('added', this.orderingredient)
-      }
-    } else {
-      if (type == 'food') {
-        const index: number = this.orderfood.indexOf(item);
+      this.orderMenu.push(item) 
+    } else { 
+      const index: number = this.orderMenu.indexOf(item);
         if (index !== -1) {
-          this.orderfood.splice(index, 1); 
-        }         
-      }
-      if (type == 'dink') {
-        const index: number = this.orderdrink.indexOf(item);
-        if (index !== -1) {
-          this.orderdrink.splice(index, 1);
-          console.log('re', this.orderdrink)
-        }
-      }
-      if (type == 'ing') {
-        const index: number = this.orderingredient.indexOf(item);
-        if (index !== -1) {
-          this.orderingredient.splice(index, 1);
-        }
-      }  
+          this.orderMenu.splice(index, 1); 
+        }           
     }
     this.calculatePrice()
   }
@@ -110,97 +91,70 @@ export class OrderComponent implements OnInit, OnDestroy {
   vat: number = 0
   service: number = 0
   total: number = 0
+  orderfood = []
+  orderingredient = []
+  orderdrink = []
 
   calculatePrice() {
+    this.orderfood = []
+    this.orderingredient = []
+    this.orderdrink = []
     this.totalexc = 0 
     this.vat = 0
     this.service = 0
     this.total = 0
 
-    this.orderfood
-    this.orderdrink
-    this.orderingredient
-
-    if (this.orderfood.length > 0) {
-      let totalfood = 0
-      this.orderfood.forEach(f => {
-        totalfood = totalfood + f.unitPrice
-        console.log(totalfood)
-
+    if (this.orderMenu.length > 0) {
+      let totalmenu = 0
+      this.orderMenu.forEach(f => {
+        totalmenu = totalmenu + f.unitPrice
+        console.log("totalmenu", totalmenu) 
       })
-      this.totalexc = this.totalexc + totalfood 
- 
-    }
-
-    if (this.orderdrink.length > 0) {
-      let totaldrink = 0
-      this.orderdrink.forEach(f => {
-        totaldrink = totaldrink + f.unitPrice
-        console.log('drink', totaldrink)
-
-      })
-      this.totalexc = this.totalexc + totaldrink  
-    }
-
-    if (this.orderingredient.length > 0) {
-      let totaling = 0
-      this.orderingredient.forEach(f => {
-        totaling = totaling + f.unitPrice
-        console.log('totaling', totaling) 
-      })
-
-      this.totalexc = this.totalexc + totaling
+      this.totalexc = this.totalexc + totalmenu  
     } 
     let serv = +(this.totalexc + ((10 * this.totalexc) / 100)).toFixed(2) 
     this.service = +(serv - this.totalexc).toFixed(2) 
     this.vat =+((21 * serv) / 100).toFixed(2)  
 
-    this.total = +(this.totalexc + this.service + this.vat).toFixed(2) 
+    this.total = +(this.totalexc + this.service + this.vat).toFixed(2)
+    this.orderfood = this.orderMenu.filter(f => f["menuType"] == 0)
+    this.orderdrink = this.orderMenu.filter(d => d["menuType"] == 1)
+    this.orderingredient = this.orderMenu.filter(i => i["menuType"] == 2)
+
     console.log("this.totalexc", this.totalexc) 
     console.log("this.total", this.total)
     console.log("this.vat", this.vat)
   }
   orderToSubmit = {
-    PreferdDeliveryDate: Date,
-    foods: {},
-    drinks: {},
-    ingredients: {},
+    PreferdDeliveryDate: Date, 
     totalExcVat: 0,
     servicecharge:0,
     vat: 0,
-    totalIncVat: 0, 
+    totalIncVat: 0,
+    user: "",
+    gust: "",
   }
 
   checkoutGust() {
-    console.log(true)
-    this.checkoutOrder()
-    this.sharedDataService.changeOrder(this.orderToSubmit)
+    console.log(true) 
+    this.sharedDataService.changeOrder(this.checkoutOrder(), this.orderMenu )
     this.router.navigate(['checkout-gust']);
   }
   checkoutUser() {
     this.checkoutOrder()
-    this.sharedDataService.changeOrder(this.orderToSubmit)
+    this.sharedDataService.changeOrder(this.orderToSubmit, this.orderMenu)
     this.router.navigate(['checkout-user']);
   }
   checkoutOrder() {
 
-    let foodids = []
-    this.orderfood.forEach(e =>
-      foodids.push(e.FoodId.toString())
-    )
-
-
-
     this.orderToSubmit.PreferdDeliveryDate
-    this.orderToSubmit.foods = foodids
-    this.orderToSubmit.drinks=this.orderdrink
-    this.orderToSubmit.ingredients= this.orderingredient
+    this.orderToSubmit.gust
     this.orderToSubmit.totalExcVat = this.totalexc
     this.orderToSubmit.servicecharge = this.service
     this.orderToSubmit.vat = this.vat 
     this.orderToSubmit.totalIncVat = this.total 
-    console.log("this.orderToSubmit", this.orderToSubmit)
-
+    console.log("this.orderToSubmit", this.orderToSubmit) 
+    return this.orderToSubmit
   }
 
   navigateto(val) {

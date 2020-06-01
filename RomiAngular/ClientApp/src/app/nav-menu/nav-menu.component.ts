@@ -13,7 +13,9 @@ export class NavMenuComponent {
   userDataSubscription: any;
   userData = new User();
   userRole =  Role;
-  constructor(private authService: AuthService) {
+  constructor(
+    private authService: AuthService
+  ) {
     this.userDataSubscription = this.authService.userData.asObservable().subscribe(data => {
       this.userData = data;
     });

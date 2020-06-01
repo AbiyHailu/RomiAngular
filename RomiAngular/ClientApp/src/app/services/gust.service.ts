@@ -15,8 +15,7 @@ export class GustService {
     return <Observable<any>>this.http.get("/api/gusts/" + id);
   }
 
-  addGusts(gust: Gust): Observable<any> {
-    console.log(gust)
+  addGusts(gust: Gust): Observable<any> { 
     return <Observable<any>>this.http.post("/api/gusts", gust);
   }
 

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { SharedDataService } from '../services/sharedDataService';
 import { User } from '../models/User';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-checkoutUser',
@@ -13,8 +14,11 @@ export class CheckoutUserComponent implements OnDestroy{
   userData:any
   subject: Subject<void> = new Subject();
 
-  constructor(private router: Router,
-    private sharedDataService: SharedDataService) {
+  constructor(
+    private router: Router,
+    private sharedDataService: SharedDataService, 
+    private orderService: OrderService
+  ) {
     if (localStorage.getItem('authToken')) {
       const userDetails = new User();
       const decodeUserDetails = JSON.parse(window.atob(localStorage.getItem('authToken').split('.')[1]));
@@ -24,8 +28,7 @@ export class CheckoutUserComponent implements OnDestroy{
       userDetails.userRole = decodeUserDetails.role;
       this.userData.next(userDetails);
       console.log("userData", this.userData)
-    }
-
+    } 
   }
 
   ngOnDestroy(): void {

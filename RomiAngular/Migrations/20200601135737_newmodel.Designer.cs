@@ -10,8 +10,8 @@ using RomiAngular.Data;
 namespace RomiAngular.Migrations
 {
     [DbContext(typeof(RomiContext))]
-    [Migration("20200527123722_newModel")]
-    partial class newModel
+    [Migration("20200601135737_newmodel")]
+    partial class newmodel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,9 +31,6 @@ namespace RomiAngular.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OrderId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
@@ -60,8 +57,8 @@ namespace RomiAngular.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrderID")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("OrderID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("UnitPrice")
                         .HasColumnType("decimal(10,2)");
@@ -75,25 +72,18 @@ namespace RomiAngular.Migrations
 
             modelBuilder.Entity("RomiAngular.Models.Order", b =>
                 {
-                    b.Property<int>("OrderID")
+                    b.Property<Guid>("OrderID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Deliverd")
                         .HasColumnType("bit");
 
-                    b.Property<int>("GustId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("GustId1")
+                    b.Property<Guid>("GustId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Markasread")
                         .HasColumnType("bit");
-
-                    b.Property<int?>("MenuID")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
@@ -117,12 +107,6 @@ namespace RomiAngular.Migrations
                         .HasColumnType("decimal(10,2)");
 
                     b.HasKey("OrderID");
-
-                    b.HasIndex("GustId1");
-
-                    b.HasIndex("MenuID");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -158,23 +142,6 @@ namespace RomiAngular.Migrations
                     b.HasOne("RomiAngular.Models.Order", null)
                         .WithMany("Menus")
                         .HasForeignKey("OrderID");
-                });
-
-            modelBuilder.Entity("RomiAngular.Models.Order", b =>
-                {
-                    b.HasOne("RomiAngular.Models.Gust", "Gust")
-                        .WithMany("Orders")
-                        .HasForeignKey("GustId1");
-
-                    b.HasOne("RomiAngular.Models.Menu", null)
-                        .WithMany("Orders")
-                        .HasForeignKey("MenuID");
-
-                    b.HasOne("RomiAngular.Models.User", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

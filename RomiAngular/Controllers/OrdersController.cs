@@ -45,7 +45,7 @@ namespace RomiWeb.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrder(int id, Order order)
+        public async Task<IActionResult> PutOrder(Guid id, Order order)
         {
             if (id != order.OrderID)
             {
@@ -77,19 +77,24 @@ namespace RomiWeb.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Order>> PostOrder(Order order  )
+        public async Task<ActionResult<Order>> PostOrder(Order order,  List<Menu>menuIds )
         {  
+            //order.OrderID= 
+            //Userid or gust 
             order.OrderDate = DateTime.Now;
             order.Deliverd = false;
             order.Markasread = false;
+            foreach (var item in menuIds)
+            {
+                order.MenuId = item.MenuID; 
+                _context.Orders.Add(order);
+                await _context.SaveChangesAsync(); 
+            }
+            
+          //  new way  make menu .. and enum save an enum 
+          //when save  do it on the enume  
 
            
-          //  new way  make menu .. and enum save an enum 
-          //when save  do it on the enume 
-
-
-            _context.Orders.Add(order);
-            await _context.SaveChangesAsync(); 
             return CreatedAtAction("GetOrder", new { id = order.OrderID }, order);
         }
 
@@ -109,7 +114,7 @@ namespace RomiWeb.Controllers
             return order;
         }
 
-        private bool OrderExists(int id)
+        private bool OrderExists(Guid id)
         {
             return _context.Orders.Any(e => e.OrderID == id);
         }

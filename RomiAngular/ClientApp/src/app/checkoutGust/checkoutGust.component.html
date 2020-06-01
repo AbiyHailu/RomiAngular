@@ -5,6 +5,7 @@
     <title></title>
 </head>
 <body>
+  order summary 
   <h4>Add gust details</h4>
   <hr />
   <div *ngIf="order" class="row">
@@ -55,17 +56,20 @@
       <div style="color:green">
         {{success}}
       </div>
+      <div style="color:orange">
+        {{fail}}
+      </div>
       <br />
     </div>
   </div>
   <div *ngIf="!order" class="row">
     <h5>
       No Orders added. Please , Go to orders o add orders.
-    </h5> 
+    </h5>
   </div>
 
-    <div>
-      <a (click)="navigateToOrder()">Back to Orders</a>
-    </div>
+  <div>
+    <a (click)="navigateToOrder()">Back to Orders</a>
+  </div>
 </body>
 </html>
