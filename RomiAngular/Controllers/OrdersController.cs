@@ -77,27 +77,32 @@ namespace RomiWeb.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Order>> PostOrder(Order order,  List<Menu>menuIds )
-        {  
-            //order.OrderID= 
-            //Userid or gust 
+        public async Task<ActionResult<Order>> PostOrder(Ordertosubmit orderandMenuids )
+        {
+            var order = new Order();
+            order = orderandMenuids.Order;
+            order.OrderID = new Guid ();
             order.OrderDate = DateTime.Now;
             order.Deliverd = false;
-            order.Markasread = false;
-            foreach (var item in menuIds)
-            {
-                order.MenuId = item.MenuID; 
-                _context.Orders.Add(order);
-                await _context.SaveChangesAsync(); 
-            }
-            
-          //  new way  make menu .. and enum save an enum 
-          //when save  do it on the enume  
+            order.Markasread = false; 
+             _context.Orders.Add(order); 
+            await _context.SaveChangesAsync();
 
-           
+            var menuIds = orderandMenuids.Menu ;
+            foreach (var item in menuIds)
+            { 
+                var ordermenu = new OrderMenu();
+                ordermenu.OrderID = order.OrderID;
+                ordermenu.OrderMenuId = new Guid();
+                ordermenu.MenuId = item.MenuID;
+                _context.OrderMenus.Add(ordermenu); 
+                await _context.SaveChangesAsync(); 
+            }  
+         
             return CreatedAtAction("GetOrder", new { id = order.OrderID }, order);
         }
 
+ 
         // DELETE: api/Orders/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Order>> DeleteOrder(int id)
@@ -118,5 +123,10 @@ namespace RomiWeb.Controllers
         {
             return _context.Orders.Any(e => e.OrderID == id);
         }
+    }
+    public class Ordertosubmit
+    {
+        public Order Order { get; set; }
+        public List<Menu> Menu  { get; set; }
     }
 }

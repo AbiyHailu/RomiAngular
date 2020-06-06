@@ -5,21 +5,22 @@ import { takeUntil } from 'rxjs/operators';
 import { SharedDataService } from '../services/sharedDataService';
 import { GustService } from '../services/gust.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { OrderService } from '../services/order.service';
+import { OrderService, Order } from '../services/order.service';
 
 @Component({
   selector: 'app-checkoutGust',
   templateUrl: './checkoutGust.component.html',
 })
 export class CheckoutGustComponent implements OnDestroy {
-  gust: any
-  order: any
+ 
+  order: Order
   menu: any
   subject: Subject<void> = new Subject();
   successOrder =true
 
   firstNumber: number;
-  secondNumber: number; 
+  secondNumber: number;
+  orderandMenuides = { order: {}, menu: [] }
   constructor(
     private router: Router,
     private sharedDataService: SharedDataService,
@@ -33,6 +34,7 @@ export class CheckoutGustComponent implements OnDestroy {
         console.log("res", res)
         this.order = res.order
         this.menu = res.menu
+         
       })
 
     this.firstNumber = Math.floor(Math.random() * 10) + 1;
@@ -59,9 +61,8 @@ export class CheckoutGustComponent implements OnDestroy {
     }
   }
   success: string
-  fail:string
-  onClickSubmit(data) {
-    console.log("data", data)
+  fail: string
+  onClickSubmit(data) { 
     data.phone = data.phone.toString();
     if (this.formdata.invalid || !this.result) {
       this.onKey(null)
@@ -70,11 +71,18 @@ export class CheckoutGustComponent implements OnDestroy {
 
     this.gustService.addGusts(data)
       .pipe(takeUntil(this.subject))
-      .subscribe(res => {
+      .subscribe(res => { 
         console.log("res", res)
         if (res) {
-          this.order.gust = res.GustID
-          this.orderService.addOrders(this.order, this.menu).pipe(takeUntil(this.subject))
+          console.log("test", res.gustId)
+          this.order.gustId = res.gustId
+          console.log(this.order.gustId )
+          this.order.userId = null
+
+          this.orderandMenuides.order = this.order
+          this.orderandMenuides.menu = this.menu
+          console.log("this.orderandMenuides", this.orderandMenuides)
+          this.orderService.addOrders( this.orderandMenuides).pipe(takeUntil(this.subject))
             .pipe(takeUntil(this.subject))
             .subscribe(res => {
               this.successOrder = false
@@ -91,7 +99,7 @@ export class CheckoutGustComponent implements OnDestroy {
                 // 'onCompleted' callback.
                 // No errors, route to new page here
               })
-        }  
+        }    
       })  
   }
   navigateToOrder() {

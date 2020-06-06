@@ -131,29 +131,37 @@ export class OrderComponent implements OnInit, OnDestroy {
     servicecharge:0,
     vat: 0,
     totalIncVat: 0,
-    user: "",
-    gust: "",
+    userId: "",
+    gustId: "",
   }
-
+  orderandMenuides = {  order: { }  ,   menu: []  }
   checkoutGust() {
-    console.log(true) 
-    this.sharedDataService.changeOrder(this.checkoutOrder(), this.orderMenu )
+    this.orderandMenuides.menu= [] 
+    this.orderandMenuides.order = this.checkoutOrder() 
+    this.orderMenu.forEach(e =>
+      this.orderandMenuides.menu.push(e)
+    )  
+   
+    this.sharedDataService.changeOrder(this.orderandMenuides)
     this.router.navigate(['checkout-gust']);
   }
   checkoutUser() {
-    this.checkoutOrder()
-    this.sharedDataService.changeOrder(this.orderToSubmit, this.orderMenu)
+    this.orderandMenuides.menu = []
+    this.orderandMenuides.order = this.checkoutOrder()
+    this.orderMenu.forEach(e =>
+      this.orderandMenuides.menu.push(e) 
+    )
+    console.log(" this.orderandMenuides", this.orderandMenuides) 
+    this.sharedDataService.changeOrder(this.orderandMenuides)
     this.router.navigate(['checkout-user']);
   }
-  checkoutOrder() {
-
-    this.orderToSubmit.PreferdDeliveryDate
-    this.orderToSubmit.gust
+  
+  checkoutOrder() { 
+    this.orderToSubmit.PreferdDeliveryDate 
     this.orderToSubmit.totalExcVat = this.totalexc
     this.orderToSubmit.servicecharge = this.service
     this.orderToSubmit.vat = this.vat 
-    this.orderToSubmit.totalIncVat = this.total 
-    console.log("this.orderToSubmit", this.orderToSubmit) 
+    this.orderToSubmit.totalIncVat = this.total  
     return this.orderToSubmit
   }
 

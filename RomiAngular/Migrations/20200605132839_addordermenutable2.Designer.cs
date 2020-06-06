@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RomiAngular.Data;
 
 namespace RomiAngular.Migrations
 {
     [DbContext(typeof(RomiContext))]
-    partial class RomiContextModelSnapshot : ModelSnapshot
+    [Migration("20200605132839_addordermenutable2")]
+    partial class addordermenutable2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,10 +57,15 @@ namespace RomiAngular.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("OrderMenuid")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<decimal>("UnitPrice")
                         .HasColumnType("decimal(10,2)");
 
                     b.HasKey("MenuID");
+
+                    b.HasIndex("OrderMenuid");
 
                     b.ToTable("Menus");
                 });
@@ -72,7 +79,7 @@ namespace RomiAngular.Migrations
                     b.Property<bool>("Deliverd")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("GustId")
+                    b.Property<Guid>("GustId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Markasread")
@@ -93,7 +100,7 @@ namespace RomiAngular.Migrations
                     b.Property<decimal>("TotalIncVat")
                         .HasColumnType("decimal(10,2)");
 
-                    b.Property<Guid?>("UserId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Vat")
@@ -106,7 +113,7 @@ namespace RomiAngular.Migrations
 
             modelBuilder.Entity("RomiAngular.Models.OrderMenu", b =>
                 {
-                    b.Property<Guid>("OrderMenuId")
+                    b.Property<Guid>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -116,7 +123,7 @@ namespace RomiAngular.Migrations
                     b.Property<Guid>("OrderID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("OrderMenuId");
+                    b.HasKey("id");
 
                     b.ToTable("OrderMenus");
                 });
@@ -145,6 +152,13 @@ namespace RomiAngular.Migrations
                     b.HasKey("UserID");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("RomiAngular.Models.Menu", b =>
+                {
+                    b.HasOne("RomiAngular.Models.OrderMenu", null)
+                        .WithMany("Menus")
+                        .HasForeignKey("OrderMenuid");
                 });
 #pragma warning restore 612, 618
         }

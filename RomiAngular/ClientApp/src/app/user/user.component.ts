@@ -12,10 +12,10 @@ export class UserComponent implements OnInit {
   }
 
   fetchUserData() {
-    this.userService.getUserData().subscribe(
-      (result: string) => {
-        this.userData = result;
-      }
-    );
+    //this.userService.getUserData().subscribe(
+    //  (result: string) => {
+    //    this.userData = result;
+    //  }
+    //);
   }
 }

@@ -15,8 +15,8 @@ export class OrderService {
     return <Observable<any>>this.http.get("/api/orders/" + id);
   }
 
-  addOrders(order: Order, menu:any): Observable<any> {
-    return <Observable<any>>this.http.post("/api/orders", order, menu);
+  addOrders(order: any ): Observable<any> {
+    return <Observable<any>>this.http.post("/api/orders", order );
   }
 
   editOrders(order: any): Observable<any> {
@@ -28,9 +28,8 @@ export interface Order {
   OrderID: any;
   OrderDate:any
   PreferdDeliveryDate:any
-  Foods:any
-  Drinks: any
-  Ingredients:any 
+  userId:any 
+  gustId :any
   TotalExcVat: number
   servicecharge: number
   vat: number

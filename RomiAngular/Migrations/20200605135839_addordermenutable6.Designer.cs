@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RomiAngular.Data;
 
 namespace RomiAngular.Migrations
 {
     [DbContext(typeof(RomiContext))]
-    partial class RomiContextModelSnapshot : ModelSnapshot
+    [Migration("20200605135839_addordermenutable6")]
+    partial class addordermenutable6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
