@@ -1,6 +1,6 @@
 
 export class User {
-  userId:any
+  userID:any
   userName: string;
   firstName: string;
   isLoggedIn: boolean;

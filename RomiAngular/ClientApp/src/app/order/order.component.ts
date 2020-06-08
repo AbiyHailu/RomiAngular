@@ -107,8 +107,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     if (this.orderMenu.length > 0) {
       let totalmenu = 0
       this.orderMenu.forEach(f => {
-        totalmenu = totalmenu + f.unitPrice
-        console.log("totalmenu", totalmenu) 
+        totalmenu = totalmenu + f.unitPrice 
       })
       this.totalexc = this.totalexc + totalmenu  
     } 
@@ -121,9 +120,6 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.orderdrink = this.orderMenu.filter(d => d["menuType"] == 1)
     this.orderingredient = this.orderMenu.filter(i => i["menuType"] == 2)
 
-    console.log("this.totalexc", this.totalexc) 
-    console.log("this.total", this.total)
-    console.log("this.vat", this.vat)
   }
   orderToSubmit = {
     PreferdDeliveryDate: Date, 
@@ -150,8 +146,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.orderandMenuides.order = this.checkoutOrder()
     this.orderMenu.forEach(e =>
       this.orderandMenuides.menu.push(e) 
-    )
-    console.log(" this.orderandMenuides", this.orderandMenuides) 
+    )  
     this.sharedDataService.changeOrder(this.orderandMenuides)
     this.router.navigate(['checkout-user']);
   }

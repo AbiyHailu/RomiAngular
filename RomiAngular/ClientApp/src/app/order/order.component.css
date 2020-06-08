@@ -1,5 +1,49 @@
 body {
 }
+
+.card {
+  color: white;
+  border-left-color: black;
+  border-right-color: black
+}
+.card-header {
+  background: black; 
+}
+
+.card-body { 
+  padding: 0%
+}
+.fo  {
+  background-image: url(/assets/ketfo.jpg);
+  background-repeat: no-repeat;
+  background-size: 110%;
+  background-position: -70px;
+  padding:0%
+}
+.dr {
+  background-image: url(/assets/mesob1.jpg);
+  background-repeat: no-repeat;
+  background-size: 110%;
+  background-position: -70px;
+  padding: 0%
+}
+.in  {
+  background-image: url(/assets/mesob1.jpg);
+  background-repeat: no-repeat;
+  background-size: 110%;
+  background-position: -70px;
+}
+.food, .drink, .ing {
+  padding: 2%;
+  background-color: rgba(0,0,0,.5);
+}
+.order {
+  background: black;
+}
+.btn-link {
+  color: orange;
+}
+
 .btn-checkout {
   width: 100% !important
 }

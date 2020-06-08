@@ -1,28 +1,23 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <title></title>
 </head>
-<body>
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
+<body> 
   <div id="accordion">
     <div class="card">
       <div class="card-header" id="headingOne">
         <h5 class="mb-0">
-          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" (click)="openFoodDiv()">
+          <button class="btn btn-link"   data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" (click)="openFoodDiv()">
             የምግብ ዝርዝሮች
           </button>
         </h5>
       </div>
 
       <div id="collapseOne" [ngClass]="{'collapse show': toggle1, 'collapse': !toggle1}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="card-body">
-          <div class="row"  >
+        <div class="card-body fo">
+          <div class="row food"  >
             <div class="col-lg-4" *ngFor="let food of foods; index as i;">
               <input type="checkbox" id="food" name="food" #box (change)="checkCheckBoxvalue(box.checked,food, 'food')"> &nbsp;
               &nbsp; <label class="checkbox_lebel_name" for="food">{{food.name}} </label>
@@ -43,9 +38,9 @@
         </h5>
       </div>
       <div id="collapseTwo" [ngClass]="{'collapse show': toggle2, 'collapse': !toggle2}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-        <div class="card-body">
-          <div class="row">  
-            <div class="col-lg-4" *ngFor="let drink of drinks; index as i;">
+        <div class="card-body dr ">
+          <div class="row drink">  
+            <div class="col-lg-4 " *ngFor="let drink of drinks; index as i;">
               <input type="checkbox" id="drink" name="drink" #box (change)="checkCheckBoxvalue(box.checked,drink, 'drink')"> &nbsp;
               &nbsp; <label class="checkbox_lebel_name" for="drink">{{drink.name}} </label>
               &nbsp; <label class="checkbox_lebel_price" for="drink">{{drink.unitPrice}} Birr </label>  <br />
@@ -65,8 +60,8 @@
         </h5>
       </div>
       <div id="collapseThree" [ngClass]="{'collapse show': toggle3, 'collapse': !toggle3}" aria-labelledby="headingThree" data-parent="#accordion">
-        <div class="card-body">
-          <div class="row"> 
+        <div class="card-body in">
+          <div class="row ing"> 
             <div class="col-lg-4" *ngFor="let ing of ingredients; index as i;">
               <input type="checkbox" id="ing" name="ing" #box (change)="checkCheckBoxvalue(box.checked,ing, 'ing')"> &nbsp;
               &nbsp; <label class="checkbox_lebel_name" for="ing">{{ing.name}} </label>
@@ -91,7 +86,7 @@
             Your havent Selected an item yet.
           </h6>
         </div>
-        <div *ngIf="totalexc > 0" class="card-body">
+        <div *ngIf="totalexc > 0" class="card-body order">
           <div class="row">
             <h5 *ngIf="orderfood?.length > 0">
               ምግብ
@@ -107,8 +102,7 @@
                 </div>
               </div>
             </div>
-          </div>
-          <br />
+          </div> 
           <div class="row">
             <h5 *ngIf="orderdrink?.length > 0">
               መጠጥ
@@ -141,9 +135,7 @@
                 </div>
               </div>
             </div>
-          </div>
-          <br />
-
+          </div> 
           <hr />
           <div class="row">
             <div class="col-lg-4 col-6">

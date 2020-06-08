@@ -4,10 +4,21 @@
 a {
   color: #0366d6;
 }
-html, body {
-  height: 100%; 
-}
 
+html, body {
+  height: 100%;
+  width:100%;
+  padding:0px;
+  margin:0%
+}
+.a {
+    color:orange !important
+}
+.container-fluid {
+  height: 100% !important;
+  width: 100% !important;
+  padding:0% !important
+} 
 code {
   color: #e01a76;
 }
@@ -28,3 +39,8 @@ code {
 .navbar{
     background-color:black; 
 }
+.container-fluid {
+  height: 100%;
+  width: 100%;
+} 
+ 

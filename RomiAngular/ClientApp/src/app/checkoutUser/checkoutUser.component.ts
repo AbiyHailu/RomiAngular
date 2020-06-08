@@ -55,14 +55,15 @@ export class CheckoutUserComponent implements OnDestroy{
         console.log("res", res)
         if (res) {
           this.order.gustId = null;
-          this.order.userId = res.userId
-           
- this.orderandMenuides.order = this.order
+          this.order.userId = res.userID
+          this.orderandMenuides.order = this.order
           this.orderandMenuides.menu = this.menu
           console.log("this.orderandMenuides", this.orderandMenuides)
+
           this.orderService.addOrders(this.orderandMenuides).pipe(takeUntil(this.subject))
             .pipe(takeUntil(this.subject))
             .subscribe(res => {
+              console.log("res", res)
               this.successOrder = false
               this.success = "Order Successfuly added! We will contact you Very soon. keep your phone with you.";
               this.fail = ''
