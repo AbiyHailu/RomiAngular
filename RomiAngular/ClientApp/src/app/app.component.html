@@ -1,21 +1,13 @@
 <body>
-  <div class="container-fluid  ">
-    <div class=" row-fluid  w-100" style="padding:0%; ">
-      <div class="col-lg-12 col-12" style="padding:0%; margin :0%">
-        <app-nav-menu></app-nav-menu>
-      </div>
+  <div class="container-fluid">
+    <div class="row-head">
+      <app-nav-menu></app-nav-menu>
     </div>
-    <div class=" row-fluid  w-100" style="padding:0%; ">
-      <div class="col-lg-12 col-12" style="padding: 0%; margin : 0%">
-        <router-outlet> </router-outlet>
-      </div>
+    <div class="row-body">
+      <router-outlet> </router-outlet>
     </div>
-    <div class=" row-fluid  w-100" style="padding:0%; bottom:0px ">
-      <div class="col-lg-12 col-12" style="padding: 0%; margin : 0%">
-        <div class="text-center py-3 " style="color: white; background: black">
-          © 2020 Copyright: Romi Hotel
-        </div>
-      </div>
+    <div class="text-center row-footer">
+      <h6>©2020 Copyright: Romi Hotel</h6> 
     </div>
   </div> 
 </body>

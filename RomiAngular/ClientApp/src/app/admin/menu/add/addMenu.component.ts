@@ -8,7 +8,7 @@ import { MenuService, Menu } from "../../../services/menu.service ";
 @Component(
   {
     selector: 'addmenu',
-    //styleUrls: ['manage.component.scss'],
+    styleUrls: ['addMenu.component.css'],
     templateUrl: 'addMenu.component.html'
   }
 )

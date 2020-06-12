@@ -8,7 +8,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { OrderService, Order } from '../services/order.service';
 
 @Component({
-  selector: 'app-checkoutGust',
+  selector: 'app-checkoutGust', 
+  styleUrls: ['checkoutGust.component.css'],
   templateUrl: './checkoutGust.component.html',
 })
 export class CheckoutGustComponent implements OnDestroy {
@@ -34,6 +35,7 @@ export class CheckoutGustComponent implements OnDestroy {
         console.log("res", res)
         this.order = res.order
         this.menu = res.menu
+        console.log(this.order)
          
       })
 

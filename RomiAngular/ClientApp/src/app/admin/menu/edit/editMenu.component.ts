@@ -9,6 +9,7 @@ import { MenuService } from "../../../services/menu.service ";
 @Component(
   {
     selector: 'editmenu', 
+    styleUrls: ['editmenu.component.css.css'],
     templateUrl: 'editMenu.component.html'
   }
 )

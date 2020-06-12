@@ -1,0 +1,30 @@
+.admin-add{
+  height: 80vh;
+  width: 100%;
+  margin: 0% !important;
+  background: white;
+  padding: 1%;
+  overflow-y: scroll;
+  overflow-x: hidden
+}
+form {
+  margin: auto;
+  width: 25%
+}
+@media (max-width: 575.98px) {
+  form {
+    width: 100%
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  form {
+    width: 100%
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  form {
+    width: 100%
+  }
+}

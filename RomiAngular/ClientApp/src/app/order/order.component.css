@@ -1,51 +1,78 @@
-body {
+.container-fluid {
+  height: 100vh;
+  width: 100vh;
+  margin: 0% !important;
+  background: transparent;
+  padding: 0%;
+  overflow-y: scroll;
+  overflow-x: hidden
 }
 
 .card {
-  color: white;
   border-left-color: black;
-  border-right-color: black
+  border-right-color: black;
+}
+#accordion{
+    margin-bottom:80%
 }
 .card-header {
-  background: black; 
 }
 
-.card-body { 
-  padding: 0%
+.card-body {
+  background: transparent !important;
+  padding: 0%;
+  background-color: #6d695c;
+  background:black
 }
-.fo  {
-  background-image: url(/assets/ketfo.jpg);
-  background-repeat: no-repeat;
-  background-size: 110%;
-  background-position: -70px;
-  padding:0%
-}
-.dr {
-  background-image: url(/assets/mesob1.jpg);
-  background-repeat: no-repeat;
-  background-size: 110%;
-  background-position: -70px;
-  padding: 0%
-}
-.in  {
-  background-image: url(/assets/mesob1.jpg);
-  background-repeat: no-repeat;
-  background-size: 110%;
-  background-position: -70px;
-}
+
 .food, .drink, .ing {
   padding: 2%;
-  background-color: rgba(0,0,0,.5);
+  background-color: #6d695c;
+  background-image: repeating-linear-gradient(120deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(60deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 60px), linear-gradient(60deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1)), linear-gradient(120deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1));
+  background-size: 70px 120px;
+  color:white
 }
-.order {
-  background: black;
+
+.menu-item {
+    border-bottom:none; 
 }
+.discription {
+  margin-left: 9%;
+  margin-bottom:6%
+}
+
 .btn-link {
-  color: orange;
+  color: Black;
+  font-size: 16px; 
+}
+.btn-link:hover {
+  color: Black;
+  text-decoration:none;
+  font-size:20px;
+  font-weight:bolder
+}
+
+.order {
+  padding: 1%;
+  position: fixed;
+  bottom: 10%;
+  width: 100%;
+  margin: 0% !important;
+  background: white;
+  max-height: 40%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  font-size:12px;
+  
 }
 
 .btn-checkout {
-  width: 100% !important
+  height: 30px;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  background: green;
+  margin: 1%;
+  color: white
 }
 .checkbox_lebel_name {
   font-size: 14px;
@@ -58,4 +85,32 @@ body {
 .checkbox_lebel_des { 
   font-size: 11px;
   font-style: italic
+}
+
+
+@media (max-width: 575.98px) {
+  .menu-item {
+    border-bottom: 2px solid;
+  }
+  .discription {
+    margin-left: 0%
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .menu-item {
+    border-bottom: 2px solid;
+  }
+  .discription {
+    margin-left: 0%
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .menu-item {
+    border-bottom: 2px solid;
+  }
+  .discription {
+    margin-left: 0%
+  }
 }

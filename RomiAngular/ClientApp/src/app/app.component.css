@@ -1,0 +1,52 @@
+.body, .html {
+  height: 100vh;
+  width: 100vh;
+  padding: 0% !important;
+  margin: 0% !important;
+}
+
+.container-fluid {
+  height: 100vh;
+  width: 100vh;
+  margin: 0% !important;
+  background: lightblue;
+  padding: 0%;
+  overflow: hidden;
+  background-color: #6d695c;
+  background-image: repeating-linear-gradient(120deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(60deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 60px), linear-gradient(60deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1)), linear-gradient(120deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1));
+  background-size: 70px 120px;
+}
+
+.row-head, .row-footer, .row-body {
+  margin: 0px !important; 
+  width: 100%;
+}
+
+.row-head {
+  height: 10vh;
+  background: black;
+  color: white
+}
+
+.row-body {
+  height: 80vh; 
+  padding:0% !important;
+}
+
+.row-footer {
+  height: 11vh;
+  padding:2% !important;
+  background: black;
+  color: white
+}
+@media (max-width: 575.98px) {
+ 
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+ 
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+ 
+}

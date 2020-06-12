@@ -1,73 +1,97 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body> 
+ <div class="container-fluid"> 
   <div id="accordion">
     <div class="card">
-      <div class="card-header" id="headingOne">
+      <div class="card-header" (click)="openFoodDiv()" id="headingOne">
         <h5 class="mb-0">
-          <button class="btn btn-link"   data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" (click)="openFoodDiv()">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"  >
             የምግብ ዝርዝሮች
           </button>
         </h5>
       </div>
 
       <div id="collapseOne" [ngClass]="{'collapse show': toggle1, 'collapse': !toggle1}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="card-body fo">
-          <div class="row food"  >
-            <div class="col-lg-4" *ngFor="let food of foods; index as i;">
-              <input type="checkbox" id="food" name="food" #box (change)="checkCheckBoxvalue(box.checked,food, 'food')"> &nbsp;
-              &nbsp; <label class="checkbox_lebel_name" for="food">{{food.name}} </label>
-              &nbsp; <label class="checkbox_lebel_price" for="food">{{food.unitPrice}} Birr </label>  <br />
-              &nbsp; <label class="checkbox_lebel_des" for="food">{{food.description}} </label>
-              <br />
+        <div class="card-body">
+          <div class="row food">
+            <div class="col-lg-3 col-6 menu-item" *ngFor="let food of foods; index as i;">
+              <div class="row">
+                <div class="col-lg-1 col-2">
+                  <input type="checkbox" id="food" name="food" #box (change)="checkCheckBoxvalue(box.checked,food, 'food')">
+                </div>
+                <div class="col-lg-7 col-10">
+                  <label class="checkbox_lebel_name" for="food">{{food.name}} </label>
+                </div>
+                <div class="col-lg-3 col-12">
+                  <label class="checkbox_lebel_price" for="food">{{food.unitPrice}} Birr </label>
+                </div>
+                <div class="col-lg-12 discription">
+                  <label class="checkbox_lebel_des" for="food">{{food.description}} </label>order
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingTwo" (click)="openDrinkDiv()">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"  >
+            የመጠጥ ዝርዝሮች
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwo" [ngClass]="{'collapse show': toggle2, 'collapse': !toggle2}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div class="card-body ">
+          <div class="row drink"> 
+           
+            <div class="col-lg-4 " *ngFor="let drink of drinks; index as i;">
+
+              <div class="row">
+                <div class="col-lg-1 col-2">
+                  <input type="checkbox" id="drink" name="drink" #box  (change)="checkCheckBoxvalue(box.checked,drink, 'drink')"> 
+                </div>
+                <div class="col-lg-7 col-10">
+                  <label class="checkbox_lebel_name" for="drink">{{drink.name}} </label>
+                </div>
+                <div class="col-lg-3 col-12">
+                  <label class="checkbox_lebel_price" for="drink">{{drink.unitPrice}} Birr </label>
+                </div>
+                <div class="col-lg-12 discription">
+                  <label class="checkbox_lebel_des" for="drink">{{drink.description}} </label>
+                </div>
+              </div> 
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="card">
-      <div class="card-header" id="headingTwo">
+      <div class="card-header" id="headingThree" (click)="openIngDiv()">
         <h5 class="mb-0">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" (click)="openDrinkDiv()">
-            የመጠጥ ዝርዝሮች
-          </button>
-        </h5>
-      </div>
-      <div id="collapseTwo" [ngClass]="{'collapse show': toggle2, 'collapse': !toggle2}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-        <div class="card-body dr ">
-          <div class="row drink">  
-            <div class="col-lg-4 " *ngFor="let drink of drinks; index as i;">
-              <input type="checkbox" id="drink" name="drink" #box (change)="checkCheckBoxvalue(box.checked,drink, 'drink')"> &nbsp;
-              &nbsp; <label class="checkbox_lebel_name" for="drink">{{drink.name}} </label>
-              &nbsp; <label class="checkbox_lebel_price" for="drink">{{drink.unitPrice}} Birr </label>  <br />
-              &nbsp; <label class="checkbox_lebel_des" for="drink">{{drink.description}} </label>
-              <br />
-            </div> 
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header" id="headingThree">
-        <h5 class="mb-0">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" (click)="openIngDiv()">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"  >
             የባልትና ዝርዝሮች
           </button>
         </h5>
       </div>
       <div id="collapseThree" [ngClass]="{'collapse show': toggle3, 'collapse': !toggle3}" aria-labelledby="headingThree" data-parent="#accordion">
-        <div class="card-body in">
-          <div class="row ing"> 
-            <div class="col-lg-4" *ngFor="let ing of ingredients; index as i;">
-              <input type="checkbox" id="ing" name="ing" #box (change)="checkCheckBoxvalue(box.checked,ing, 'ing')"> &nbsp;
-              &nbsp; <label class="checkbox_lebel_name" for="ing">{{ing.name}} </label>
-              &nbsp; <label class="checkbox_lebel_price" for="ing">{{ing.unitPrice}} Birr </label>  <br />
-              &nbsp; <label class="checkbox_lebel_des" for="ing">{{ing.description}} </label>
-              <br />
+        <div class="card-body ">
+          <div class="row ing">
+            <div class="col-lg-4" *ngFor="let ing of ingredients; index as i;"> 
+              <div class="row">
+                <div class="col-lg-1 col-2">
+                  <input type="checkbox" id="ing" name="ing" #box (change)="checkCheckBoxvalue(box.checked,ing, 'ing')">
+                </div>
+                <div class="col-lg-7 col-10">
+                  <label class="checkbox_lebel_name"  for="ing">{{ing.name}} </label>
+                </div>
+                <div class="col-lg-3 col-12">
+                  <label class="checkbox_lebel_price" for="ing">{{ing.unitPrice}} Birr </label> 
+                </div>
+                <div class="col-lg-12 discription">
+                  <label class="checkbox_lebel_des" for="ing">{{ing.description}} </label>
+                </div>
+              </div> 
             </div>
           </div>
         </div>
@@ -75,123 +99,45 @@
     </div>
   </div>
   <br />
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card">
-        <div class="card-header" id="headingOne">
-          <h5 class="mb-0">
-            Your Order
-          </h5>
-          <h6 *ngIf="totalexc == 0" class="mb-0">
-            Your havent Selected an item yet.
-          </h6>
-        </div>
-        <div *ngIf="totalexc > 0" class="card-body order">
-          <div class="row">
-            <h5 *ngIf="orderfood?.length > 0">
-              ምግብ
-            </h5>
-            <br />
-            <div class="col-lg-12" *ngFor="let ofood of orderfood; index as i;">
-              <div class="row">
-                <div class="col-lg-4 col-6">
-                  {{ofood.name}}
-                </div>
-                <div class="col-lg-4 col-6">
-                  {{ofood.unitPrice}}
-                </div>
-              </div>
-            </div>
-          </div> 
-          <div class="row">
-            <h5 *ngIf="orderdrink?.length > 0">
-              መጠጥ
-              <br />
-            </h5>
-            <div class="col-lg-12" *ngFor="let odrink of orderdrink; index as i;">
-              <div class="row">
-                <div class="col-lg-4 col-6">
-                  {{odrink.name}}
-                </div>
-                <div class="col-lg-4 col-6">
-                  {{odrink.unitPrice}}
-                </div>
-              </div>
-            </div>
-          </div>
-          <br />
-          <div class="row">
-            <h5 *ngIf="orderingredient?.length > 0">
-              ባልትና
-            </h5>
-            <br />
-            <div class="col-lg-12" *ngFor="let oing of orderingredient; index as i;">
-              <div class="row">
-                <div class="col-lg-4 col-6">
-                  {{oing.name}}
-                </div>
-                <div class="col-lg-4 col-6">
-                  {{oing.unitPrice}}
-                </div>
-              </div>
-            </div>
-          </div> 
-          <hr />
-          <div class="row">
-            <div class="col-lg-4 col-6">
-              Total Exc vat:
-            </div>
-            <div class="col-lg-4 col-6">
-              {{totalexc}}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-4 col-6">
-              Service Charge(0):
-            </div>
-            <div class="col-lg-4 col-6">
-              {{service}}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-4 col-6">
-              Vat(21%):
-            </div>
-            <div class="col-lg-4 col-6">
-              {{vat}}
-            </div>
-          </div>
 
-          <hr />
-          <div class="row">
-            <div class="col-lg-4 col-6">
-              Total:
-            </div>
-            <div class="col-lg-4 col-6">
-              {{total}}
-            </div>
-          </div>
-          <br />
-          <div class="row">
-            <div class="col-lg-4 col-12">
-              <button class="btn btn-primary btn-checkout" (click)="checkoutUser()">
-                Checkout as Registered User
-              </button>
-            </div>
-            <br />
-            <br />
-            <div class="col-lg-4 col-12">
-              <button class="btn btn-primary  btn-checkout" (click)="checkoutGust()">
-                Checkout as Gust
-              </button>
-            </div>
-          </div>
-          <br />
-          <br />
-          <br />
-        </div>
+  <div class="row order" id="order">
+    <div class=" col-lg-2 col-12">
+      Your Order
+      <h6 *ngIf="totalexc == 0">
+        Your havent Selected an item yet.
+      </h6>
+    </div>
+    <div class=" col-lg-5 col-7">
+      Items (birr):
+      <div class="col-lg-12" *ngFor="let ofood of orderfood; index as i;">
+        {{ofood.name}} :  {{ofood.unitPrice}}
+      </div>
+      <div class="col-lg-12" *ngFor="let odrink of orderdrink; index as i;">
+        {{odrink.name}} :  {{odrink.unitPrice}}
+      </div>
+      <div class="col-lg-12" *ngFor="let oing of orderingredient; index as i;">
+        {{oing.name}} : {{oing.unitPrice}}
       </div>
     </div>
+    <div class=" col-lg-4 col-5 ">
+      Total Cost (Birr):
+      <div *ngIf="totalexc != 0" class="col-lg-12">
+        Net:   {{totalexc}}
+        <br />
+        Ser : {{service}}
+        <br />
+        Vat: {{vat}}
+        <br />
+        Total: {{total}}
+        <br />
+      </div>
+    </div>
+    <br/>
+    <div  *ngIf="totalexc != 0"  class="col-lg-5 col-12 btn-checkout text-center" (click)="checkoutUser()"> 
+        Checkout as Registered User 
+    </div>
+    <div  *ngIf="totalexc != 0"  class="col-lg-5 btn-checkout  col-12  text-center" (click)="checkoutGust()"> 
+        Checkout as Gust 
+    </div>
+  </div> 
   </div>
-</body>
-</html>

@@ -81,7 +81,10 @@ export class CheckoutUserComponent implements OnDestroy{
         }
       })
   } 
-  
+  navigateToOrder() {
+    this.router.navigate(["./order"])
+  }
+
 
   ngOnDestroy(): void {
     this.subject.next();

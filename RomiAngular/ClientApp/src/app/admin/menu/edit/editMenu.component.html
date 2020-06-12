@@ -1,15 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <title> add</title>
-</head>
-<body> 
+<div class="admin-add text-center">
   <h4>Edit Menu</h4>
   <hr />
   <div class="row">
-    <div class="col-md-4">
-      <form *ngIf="enableForm" [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+    <div class="col-lg-12">
+      <form *ngIf="enableForm" [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)"> 
+
+        <input type="radio" id="food" name="menuType" value="food">
+        <label for="food">Food</label><br>
+        <input type="radio" id="drink" name="menuType" value="drink">
+        <label for="drink">Drink</label><br>
+        <input type="radio" id="ing" name="menuType" value="ing">
+        <label for="ing">Ingredients</label>
+
+        <br />
+
         <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name"
                formControlName="name">
 
@@ -19,15 +23,6 @@
           </div>
         </div>
         <br />
-
-
-        <input type="radio" id="male" name="gender" value="male">
-        <label for="male">Male</label><br>
-        <input type="radio" id="female" name="gender" value="female">
-        <label for="female">Female</label><br>
-        <input type="radio" id="other" name="gender" value="other">
-        <label for="other">Other</label>
-
 
         <input type="number" class="form-control" id="unitPrice" name="unitPrice"
                placeholder="Enter Unit Price" formControlName="unitPrice">
@@ -63,5 +58,4 @@
   <div>
     <a (click)="navigateToList()">Back to List</a>
   </div>
-</body>
-</html>
+</div>

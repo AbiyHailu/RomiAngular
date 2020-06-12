@@ -33,28 +33,21 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.menuService.getMenus()
       .pipe(takeUntil(this.subject))
       .subscribe(res => {
-        this.menus=res;
-        console.log("mmmnu", this.menus, res)
+        this.menus = res;
         this.foods = res.filter(f => f["menuType"] == 0)
         this.drinks = this.menus.filter(d => d["menuType"] == 1)
-        this.ingredients = this.menus.filter(i => i["menuType"] ==2)
-        console.log("foods", this.foods)
-        console.log("drinks", this.drinks)
-        console.log("ingredients", this.ingredients)
-        console.log("mmmnu", this.menus)
+        this.ingredients = this.menus.filter(i => i["menuType"] == 2)
       }) 
   }
 
   ngOnInit() {
-
+    this.toggle1 = false;
+    this.toggle2 = false;
+    this.toggle3 = false
   }
 
-  orderMenu=[]
-  //orderfood = [] 
-  //orderdrink = [] 
-  //orderingredient = []
-  checkCheckBoxvalue(checked, item ) {
-    console.log()
+  orderMenu=[] 
+  checkCheckBoxvalue(checked, item ) { 
     if (checked) {
       this.orderMenu.push(item) 
     } else { 
@@ -66,11 +59,11 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.calculatePrice()
   }
  
-  private toggle1: boolean = true;
-  private toggle2: boolean = false;
-  private toggle3: boolean = false;
+  toggle1: boolean = true;
+  toggle2: boolean = false;
+  toggle3: boolean = false;
   openFoodDiv() { 
-    this.toggle1 = true;
+    this.toggle1 = !this.toggle1;
     this.toggle3 = false
     this.toggle2 = false 
   } 

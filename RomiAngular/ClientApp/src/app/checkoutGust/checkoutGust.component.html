@@ -1,75 +1,80 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
-  order summary 
-  <h4>Add gust details</h4>
-  <hr />
-  <div *ngIf="order" class="row">
-    <div class="col-md-4">
-      <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
-        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name"
-               formControlName="firstname">
 
-        <div *ngIf="formdata.controls['firstname'].invalid && (formdata.controls['firstname'].dirty || formdata.controls['firstname'].touched)" class="alert alert-danger">
-          <div *ngIf="formdata.controls['firstname'].errors.required">
-            First Name is required.
+  <div  class="container-fluid"> 
+    <div class="col-lg-12  text-center text-white  add-gust">
+      <h4  *ngIf="order" >Add Gust Details</h4>
+      <hr />
+      <div *ngIf="order" class="row   text-white ">
+        <div class="col-lg-12 text-center text-white">
+          <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name"
+                   formControlName="firstname">
+
+            <div *ngIf="formdata.controls['firstname'].invalid && (formdata.controls['firstname'].dirty || formdata.controls['firstname'].touched)" class="alert alert-danger">
+              <div *ngIf="formdata.controls['firstname'].errors.required">
+                First Name is required.
+              </div>
+            </div>
+            <br />
+            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name"
+                   formControlName="lastname">
+
+            <div *ngIf="formdata.controls['lastname'].invalid && (formdata.controls['lastname'].dirty || formdata.controls['lastname'].touched)" class="alert alert-danger">
+              <div *ngIf="formdata.controls['lastname'].errors.required">
+                Last Name is required.
+              </div>
+            </div>
+            <br />
+
+            <input type="number" class="form-control number-input" id="phone" name="phone" placeholder="Enter Phone Number"
+                   formControlName="phone">
+
+            <div *ngIf="formdata.controls['phone'].invalid && (formdata.controls['phone'].dirty || formdata.controls['phone'].touched)" class="alert alert-danger">
+              <div *ngIf="formdata.controls['phone'].errors.required">
+                Phone with proper format (09...)is required.
+              </div>
+            </div>
+            <br />
+
+            <div class="row numinput">
+              {{firstNumber}} + {{secondNumber}} =  &nbsp;<input type="text" class="form-control inputtest" #box (keyup)="onKey(box.value)" />
+            </div>
+            <div *ngIf="wronganswer != ''" class="alert-warning">
+              {{wronganswer}}
+            </div>
+
+            <br />
+            <input type="submit" [disabled]="!formdata.valid || !successOrder" class="btn btn-submit"
+                   value="Submit">
+          </form>
+          <br />
+          <div style="color:green">
+            {{success}}
           </div>
-        </div>
-        <br />
-
-        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name"
-               formControlName="lastname">
-
-        <div *ngIf="formdata.controls['lastname'].invalid && (formdata.controls['lastname'].dirty || formdata.controls['lastname'].touched)" class="alert alert-danger">
-          <div *ngIf="formdata.controls['lastname'].errors.required">
-            Last Name is required.
+          <div style="color:orange">
+            {{fail}}
           </div>
+          <br />
         </div>
-        <br />
-
-        <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter Phone Number"
-               formControlName="phone">
-
-        <div *ngIf="formdata.controls['phone'].invalid && (formdata.controls['phone'].dirty || formdata.controls['phone'].touched)" class="alert alert-danger">
-          <div *ngIf="formdata.controls['phone'].errors.required">
-            Phone with proper format (09...)is required.
-          </div>
+        <div class="col-lg-12 justify-content-center">
+          <h5>Order Summary</h5>
+          <hr />
+          Total with out Vat: {{ order.totalExcVat}} Birr<br />
+          Service charge :{{ order.servicecharge}} Birr<br />
+          Vat: {{ order.vat}} Birr<br />
+          Total Including Vat {{ order.totalIncVat}} Birr<br />
         </div>
-        <br />
-
-        <div class="row numinput">
-          {{firstNumber}} + {{secondNumber}} =  &nbsp;<input type="text" class="form-control inputtest" #box (keyup)="onKey(box.value)" />
-        </div>
-        <div *ngIf="wronganswer != ''" class="alert-warning">
-          {{wronganswer}}
-        </div>
-
-        <br />
-        <input type="submit" [disabled]="!formdata.valid || !successOrder" class="btn btn-primary"
-               value="Submit">
-      </form>
-      <br />
-      <div style="color:green">
-        {{success}}
       </div>
-      <div style="color:orange">
-        {{fail}}
+    
+    </div> 
+    <div *ngIf="!order" class="row text-center text-white">
+      <div class="col-lg-12 ">
+        <h5>
+          No order item added. Please, Go to orders to add items.
+        </h5>
       </div>
-      <br />
-    </div>
+      <br/>
+      <div class="col-lg-12 " (click)="navigateToOrder()">
+        <h5> Back to Orders</h5>
+      </div>
+    </div>   
   </div>
-  <div *ngIf="!order" class="row">
-    <h5>
-      No Orders added. Please , Go to orders o add orders.
-    </h5>
-  </div>
-
-  <div>
-    <a (click)="navigateToOrder()">Back to Orders</a>
-  </div>
-</body>
-</html>

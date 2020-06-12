@@ -1,5 +1,5 @@
 <header> 
-  <ul class=" nav justify-content-center text-white ">
+  <ul class=" nav justify-content-center text-white">
     <li class="nav-item"
         [routerLinkActive]="['link-active']"
         [routerLinkActiveOptions]="{ exact: true }">
@@ -15,7 +15,7 @@
       <a class="nav-link text-white" *ngIf="userData.isLoggedIn && userData.userRole==userRole.User" [routerLink]='["/user"]' [routerLink]=''>User</a>
     </li>
     <li class="nav-item" [routerLinkActive]='["link-active"]'>
-      <a class="nav-link text-white" *ngIf="userData.isLoggedIn && userData.userRole==userRole.Admin" [routerLink]='["/admin"]' [routerLink]=''>Manage</a>
+      <a class="nav-link text-white" *ngIf="userData.isLoggedIn && userData.userRole==userRole.Admin" [routerLink]='["/admin/menu-list"]' [routerLink]=''>Manage</a>
     </li>
 
     <li class="nav-item" [routerLinkActive]='["link-active"]' *ngIf="userData.isLoggedIn">
@@ -25,5 +25,8 @@
     <li class="nav-item" [routerLinkActive]='["link-active"]'>
       <a class="nav-link text-white" *ngIf="userData.isLoggedIn" (click)=logout() [routerLink]=''>Logout</a>
     </li>
+    <li class="nav-item" [routerLinkActive]='["link-active"]'>
+      <i class="fa fa-cart-plus"></i>
+     </li>
   </ul>
 </header>

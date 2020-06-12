@@ -1,115 +1,105 @@
-body {
-} 
-
-.logo {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 160px !important;
-  color: white;
-  margin-top: 4%;
-}
 .pic-row {
   background-image: url(/assets/ketfo.jpg);
   background-repeat: no-repeat;
-  background-size: 100%; 
+  background-size: 100%;
+  margin-top:-0.5% !important;
+  padding:0% !important;
 }
-.fixed-row-bottom {  
-  background:red
-}
-.food  {
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white; 
-  padding:2%;
-  cursor:pointer
-}
-.bottom-message {
+
+.logo {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 160px;
   color: white;
-  font-size: 50px !important;
+  margin-top: 4%;
+}
+
+.hr1, .hr2, .hr3, .hr4{
+    height:2px;
+    color: white;
+    background:white;
+}
+.hr1{
+    width:30%
+}
+.hr2 {
+  width: 25%
+}
+.hr3 {
+  width: 20%
+}
+.hr4 {
+  width: 15%;
+  margin-bottom:10%
+}
+.home-button-div {
+  text-align: center;
+}
+
+.btn-home {
+  width: 25%;
+  height: 10vh;
+  margin: 2%;
+  border: none;
+  border-radius: 0;
+  background:white;
+  font-size:40px;
+}
+
+.bottom-message{
+    color:white;
+    font-size:40px;
 }
 
 @media (max-width: 575.98px) {
   .logo {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 50px !important;
-    color: white;
-    margin: auto;
-    margin-top: 30%
+    font-size: 80px;
   }
-  .pic-row {
-    background-image: url(/assets/ketfo.jpg);
-    background-repeat: no-repeat;
-    background-size: 300%;
-    background-position:-100px
+  .pic-row { 
+    background-size: 250%; 
+ }
+  .btn-home {
+    width: 80%;    
+    font-size: 20px;
   }
+
   .bottom-message {
-    color: white;
-    font-size: 30px !important;
-    padding-top: 6%
+     margin-top:10%; 
+    font-size: 20px;
   }
-  .food {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 4%;
-    margin-top:1%;
-    width: 100% !important
-  }
-}
- 
-@media (min-width: 576px) and (max-width: 767.98px) {
-  .logo {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 60px !important;
-    color: white;
-    margin: auto;
-    margin-top: 15%
-  }
-  .pic-row {
-    height: auto
-  }
-  .food {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    margin-top: 1%;
-    padding: 4%
-  } 
 }
 
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .logo {
+    font-size: 80px;
+  }
+  .pic-row { 
+    background-size: 250%; 
+ }
+  .btn-home {
+    width: 80%; 
+    font-size: 20px;
+  }
+
+  .bottom-message {
+    margin-top: 10%; 
+    font-size: 20px;
+  }
+}
 
 @media (min-width: 768px) and (max-width: 991.98px) {
   .logo {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 70px !important;
-    color: white;
-    margin: auto;
-    margin-top: 15%
+    font-size: 80px;
   }
-  .pic-row {
-    height: auto
+  .pic-row { 
+    background-size: 250%; 
+  }
+  .btn-home {
+    width: 80%; 
+    font-size: 20px;
   }
 
-  .food {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    margin-top: 1%;
-    padding: 4%
+  .bottom-message {
+    margin-top: 10%; 
+    font-size: 20px;
   }
 }
-
-
-@media (min-width: 992px) and (max-width: 1199.98px) {
-  .logo {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 80px !important;
-    color: white;
-    margin-top: 15%
-  }
-  .food {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    margin-top: 1%;
-    padding: 4%
-  }
-}
-
-@media (min-width: 1200px) {
-
-} 
